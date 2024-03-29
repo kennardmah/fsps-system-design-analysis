@@ -4,8 +4,8 @@ from graphviz import Digraph
 dtree = Digraph(comment='Lunar Energy System Decision Tree', graph_attr={'rankdir': 'LR'})
 
 # Define the initial decision nodes for nuclear fission capacity
-nuclear_options = ['Small Nuclear', 'Medium Nuclear', 'Large Nuclear']
-solar_options = ['Small Solar', 'Medium Solar', 'Large Solar']
+nuclear_options = ['Small', 'Medium', 'Large']
+solar_options = ['Small', 'Medium', 'Large']
 chance_nodes = ['No Shortage', 'Shortage']
 
 # Adding the initial decision node
@@ -13,29 +13,31 @@ dtree.node('A', 'Nuclear Fission Capacity', shape='box')
 
 # Adding nodes for nuclear options
 for i, option in enumerate(nuclear_options, start=1):
-    dtree.node(f'B{i}', option, shape='box')
-    dtree.edge('A', f'B{i}', label=' ')
+    nuc_node_id = f'B{i}'
+    dtree.node(nuc_node_id, option, shape='box')
+    dtree.edge('A', nuc_node_id, label=' ')
+    
+    # Adding chance nodes for energy shortages between nuclear decision and solar panel decision
+    for sc, chance in enumerate(chance_nodes, start=1):
+        shortage_node_id = f'SC{i}{sc}'
+        dtree.node(shortage_node_id, chance, shape='ellipse')
+        dtree.edge(nuc_node_id, shortage_node_id, label='')
 
-    # Adding decision nodes for adding solar panels after X years
-    dtree.node(f'C{i}', 'Add Solar Panels?', shape='diamond')
-    dtree.edge(f'B{i}', f'C{i}', label='After X years')
-
-    # Adding nodes for solar panel options
-    for j, solar_option in enumerate(solar_options, start=1):
-        node_id = f'D{i}{j}'
-        dtree.node(node_id, solar_option, shape='box')
-        dtree.edge(f'C{i}', node_id, label=' ')
-
-        # Adding chance nodes for energy demand
-        for k, chance_node in enumerate(chance_nodes, start=1):
-            chance_id = f'E{i}{j}{k}'
-            dtree.node(chance_id, chance_node, shape='ellipse')
-            dtree.edge(node_id, chance_id, label=' ')
+        # Adding decision nodes for adding solar panels after X years
+        sol_node_id = f'C{i}{sc}'
+        dtree.node(sol_node_id, 'PV Panel Expansion', shape='box')
+        dtree.edge(shortage_node_id, sol_node_id, label='After 10 years')
+    
+        # Adding nodes for solar panel options
+        for j, solar_option in enumerate(solar_options, start=1):
+            solar_option_node_id = f'D{i}{sc}{j}'
+            dtree.node(solar_option_node_id, solar_option, shape='box')
+            dtree.edge(sol_node_id, solar_option_node_id, label=' ')
 
             # Add an outcome node for each path
-            outcome_id = f'Outcome{i}{j}{k}'
-            dtree.node(outcome_id, f'Outcome {i}{j}{k}', shape='box')
-            dtree.edge(chance_id, outcome_id, label='Outcome')
+            outcome_id = f'Outcome{i}{sc}{j}'
+            dtree.node(outcome_id, f'Outcome {i}{sc}{j}', shape='box')
+            dtree.edge(solar_option_node_id, outcome_id, label='Outcome')
 
 # Visualize the decision tree
 output_path = '/Users/kennardmah/Documents/GitHub/masters-thesis-sustainable-lunar-energy/lunar_energy_decision_tree'
