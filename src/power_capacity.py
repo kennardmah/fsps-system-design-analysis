@@ -15,7 +15,7 @@ time = 20
 def find_mass(kW, EOPM=EOPM):
     return kW / EOPM
 
-def nuclear_capacity(M_nf, time, EOPM=EOPM, decay_rate=decay_rate):
+def nuclear_capacity(M_nf, time, EOPM=40/3969, decay_rate=0.0159):
     return M_nf * EOPM * (1 - decay_rate)**time
 
 # Initial capacities and corresponding masses
