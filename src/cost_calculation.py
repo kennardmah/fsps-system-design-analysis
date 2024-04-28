@@ -19,8 +19,8 @@ t = np.linspace(0, 20, 100)  # Define time from 0 to 20 in 100 steps
 def nuclear_capacity(M_nf, time, EOPM=40/3969, decay_rate=0.0159):
     return M_nf * EOPM * (1 - decay_rate)**time
 
-def P_demand(t):
-    return 34.2 * np.ones_like(t) # A hypothetical constant demand curve
+def P_demand(demand, t):
+    return demand * np.ones_like(t) # A hypothetical constant demand curve
 
 def P_supply(t):
     return nuclear_capacity(M_nf, time=t)
