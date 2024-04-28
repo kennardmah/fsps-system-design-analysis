@@ -1,7 +1,7 @@
 from scipy.optimize import minimize
 import numpy as np
 from capacityModels import nuclear_capacity, pv_capacity
-from montecarlo import generate_demand_scenarios
+from energydemand_phase1 import generate_demand_scenarios
 
 def objective_function(x, num_periods, maintenance_cost_nuclear, maintenance_cost_pv, cost_pv_additional):
     """
@@ -51,7 +51,7 @@ def demand_constraint(x, demands, num_periods):
         probability_of_meeting_demand = np.mean(total_capacity >= period_demands)
         constraint_value = 0.95 - probability_of_meeting_demand
         constraints.append(constraint_value)
-        print(f"Period {period}: Capacity = {total_capacity}, Mean Demand = {np.mean(period_demands)}, Probability = {probability_of_meeting_demand}, Constraint = {constraint_value}")
+        # print(f"Period {period}: Capacity = {total_capacity}, Mean Demand = {np.mean(period_demands)}, Probability = {probability_of_meeting_demand}, Constraint = {constraint_value}")
 
     return np.array(constraints)
 

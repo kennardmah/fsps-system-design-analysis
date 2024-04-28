@@ -1,32 +1,42 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
 """
 Lunar Energy Implementation Optimisation - Kennard Mah 2024, Imperial College London
 --- capacityModels.py ---
-Calculates the energy capacity for Nuclear-based reactors and PV panels
+Calculates the energy capacity for Nuclear-based reactors
 """
 
-def nuclear_capacity(installed_capacity, efficiency=0.33):
-    """
-    Calculate output capacity for nuclear energy systems based on installed capacity and efficiency.
+# Constants
+EOPM = 40/3969
+decay_rate = 0.0159
+time = 20
 
-    :param installed_capacity: Installed capacity of nuclear system (in MW)
-    :param efficiency: Efficiency rate of the nuclear system
-    :return: Effective output capacity (in MW)
-    """
-    return installed_capacity * efficiency
+def find_mass(kW, EOPM=EOPM):
+    return kW / EOPM
 
-def pv_capacity(installed_capacity, irradiance, conversion_efficiency=0.18):
-    """
-    Calculate output capacity for PV systems based on installed capacity, irradiance, and conversion efficiency.
+def nuclear_capacity(M_nf, time, EOPM=EOPM, decay_rate=decay_rate):
+    return M_nf * EOPM * (1 - decay_rate)**time
 
-    :param installed_capacity: Installed capacity of PV panels (in MW)
-    :param irradiance: Solar irradiance (kWh/m^2/day)
-    :param conversion_efficiency: Efficiency of the PV panels
-    :return: Effective output capacity (in MW)
-    """
-    # Assuming 5 peak sun hours per day
-    return installed_capacity * irradiance * conversion_efficiency * 5
+# Initial capacities and corresponding masses
+capacities = [60, 50, 40]
+masses = [find_mass(cap) for cap in capacities]
 
-# Example usage
-if __name__ == "__main__":
-    print("Nuclear Output:", nuclear_capacity(1000))
-    print("PV Output:", pv_capacity(500, 5.5))
+# Colors for the plots
+colors = ['0.0', '0.3', '0.6']
+
+# Calculating capacities over time
+time_range = np.arange(time)
+results = {cap: [nuclear_capacity(mass, t) for t in time_range] for cap, mass in zip(capacities, masses)}
+
+# Plotting
+plt.figure(figsize=(10, 6))
+for (cap, vals), color in zip(results.items(), colors):
+    plt.plot(time_range, vals, label=f'Initial capacity: {cap} kW', color=color)
+
+plt.title('Nuclear Capacity Decay Over Time')
+plt.xlabel('Time (years)')
+plt.ylabel('Capacity (kW)')
+plt.legend()
+plt.grid(True)
+plt.show()
