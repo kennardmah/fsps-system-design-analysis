@@ -26,12 +26,12 @@ def P_supply(t):
     return nuclear_capacity(M_nf, time=t)
 
 def shortfall(t):
-    demand = P_demand(t)
+    demand = P_demand(34.2, t)
     supply = P_supply(t)
     return np.maximum(demand - supply, 0)  # Only consider positive differences
 
 plt.figure(figsize=(10, 6))
-plt.plot(t, P_demand(t), label='P_demand (34.2 kW constant)', linestyle='--')
+plt.plot(t, P_demand(34.2, t), label='P_demand (34.2 kW constant)', linestyle='--')
 plt.plot(t, P_supply(t), label='P_supply (Decaying over time)')
 plt.title('Demand vs. Supply Over Time')
 plt.xlabel('Time (years)')
