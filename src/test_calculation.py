@@ -1,29 +1,21 @@
 import numpy as np
 from scipy.integrate import simps
 import matplotlib.pyplot as plt
+from config import M_nf_40, M_total_40, C_launch, C_produce, C_payload, r_eos, C_penalty
 
-# Additional Variables for Cost Calculation
-M_nf = 3929
-M_components = 1621
-M_total = M_nf + M_components
-C_launch = 2720
-C_produce = 43000
-C_payload = 3500
-r = 0.1
 
-C_nf = (M_total) * C_launch + (M_nf * C_produce + (M_total) * C_payload) * (1 - r)
-C_penalty = 500000
+C_nf = (M_total_40) * C_launch + (M_nf_40 * C_produce + (M_total_40) * C_payload) * (1 - r_eos)
 
 t = np.linspace(0, 20, 100)  # Define time from 0 to 20 in 100 steps
 
 def nuclear_capacity(M_nf, time, EOPM=40/3969, decay_rate=0.0159):
-    return M_nf * EOPM * (1 - decay_rate)**time
+    return M_nf_40 * EOPM * (1 - decay_rate)**time
 
 def P_demand(demand, t):
     return demand * np.ones_like(t) # A hypothetical constant demand curve
 
 def P_supply(t):
-    return nuclear_capacity(M_nf, time=t)
+    return nuclear_capacity(M_nf_40, time=t)
 
 def shortfall(t):
     demand = P_demand(34.2, t)

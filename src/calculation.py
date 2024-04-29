@@ -2,16 +2,6 @@ import numpy as np
 from scipy.integrate import simps
 import matplotlib.pyplot as plt
 
-# Constants and global variables
-M_nf = 3929
-M_components = 1621
-M_total = M_nf + M_components
-C_launch = 2720
-C_produce = 43000
-C_payload = 3500
-r = 0.1
-C_penalty = 500000
-
 def calculate_costs(M_nf, M_components, C_launch, C_produce, C_payload, r):
     M_total = M_nf + M_components
     C_nf = (M_total) * C_launch + (M_nf * C_produce + (M_total) * C_payload) * (1 - r)

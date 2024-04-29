@@ -1,24 +1,19 @@
 import numpy as np
 import matplotlib.pyplot as plt
+from config import ECLSS_p1, OPERATIONS_p1
 
 def P_ECLSS(occupants, energy_per_occupants):
     return (occupants * energy_per_occupants), (1.15* energy_per_occupants)
 
 def P_operations(operations):
     total_energy = 0
-    for op, energy in operations:
+    for i, energy in operations:
         total_energy += energy
     return total_energy, 0.1*total_energy
 
-# Calculate mean and standard deviation for ECLSS
-ECLSS_p1 = [6, 4.2]
+# Calculate mean and standard deviation for ECLSS, operations, total
 mean_ECLSS_p1, std_dev_ECLSS_p1 = P_ECLSS(ECLSS_p1[0], ECLSS_p1[1])
-
-# Calculate mean and standard deviation for operations
-OPERATIONS_p1 = [('ISRU Operations', 7), ('Rover Operations', 1), ('Some other stuff', 1)]
 mean_operations_p1, std_dev_operations_p1 = P_operations(OPERATIONS_p1)
-
-# Calculate total mean and standard deviation
 mean_total_p1 = mean_ECLSS_p1 + mean_operations_p1
 variance_total_p1 = (std_dev_ECLSS_p1 ** 2) + (std_dev_operations_p1 ** 2)
 std_dev_total_p1 = np.sqrt(variance_total_p1)
