@@ -1,6 +1,7 @@
 import numpy as np
 from scipy.integrate import simps
 import matplotlib.pyplot as plt
+from config import C_launch, C_produce, C_payload, r_eos, C_penalty, r_discount
 
 def discounted_value(costs, t, r_discount=0.55):
     return np.sum(costs * (1 - r_discount)**t)
@@ -45,3 +46,5 @@ def plot_costs(t, C_total):
     plt.legend()
     plt.grid(True)
     plt.show()
+
+print(calculate_costs(3696, 1621, C_launch, C_produce, C_payload, r_eos))
