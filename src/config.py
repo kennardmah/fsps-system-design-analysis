@@ -18,6 +18,7 @@ r_decay = 0.0159
 
 # MISC
 time = 20
+r_discount = 0.55
 
 """
 PARAMETERS

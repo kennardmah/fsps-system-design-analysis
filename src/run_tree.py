@@ -1,6 +1,6 @@
 import numpy as np
 import calculation
-from config import EOPM, C_launch, C_produce, C_payload, C_penalty, r_eos, capacities
+from config import EOPM, C_launch, C_produce, C_payload, C_penalty, r_eos, capacities, r_discount
 
 # variables
 fixed_decisions = capacities
@@ -17,25 +17,38 @@ t = np.linspace(0, 10, 100)  # Time from 0 to 20 in 100 steps
 expected_costs = {}
 each_chance_1 = {}
 
-# Fixed Tree
-def run_tree(decisions, chances):
-    for capacity in decisions:
+# Recursive Tree
+def analyze_tree(decisions, chances):
+    if not decisions:
+        return  # Terminate recursion when no decisions are left to process
+    
+    # Process the first decision in the list
+    capacity = decisions[0]
+    remaining_decisions = decisions[1:]  # Remaining decisions for further recursive calls
 
-        M_nf = capacity / EOPM
-        M_components = capacity / (40/1621)
-        total_expected_cost = C_nf = calculation.calculate_costs(M_nf, M_components, C_launch, C_produce, C_payload, r_eos)
-        each_chance_1[capacity] = []
+    M_nf = capacity / EOPM
+    M_components = capacity / (40/1621)
+    total_expected_cost = C_nf = calculation.calculate_costs(M_nf, M_components, C_launch, C_produce, C_payload, r_eos)
+    each_chance_1[capacity] = []
 
-        for demand, probability in chances:
-            shortfall_values = calculation.calculate_shortfall(M_nf, demand, t)
-            C_total = calculation.calculate_shortfall_costs(t, shortfall_values, C_penalty)
-            total_expected_cost += C_total * probability
-            each_chance_1[capacity].append(total_expected_cost)
-        
-        # store data
-        expected_costs[capacity] = total_expected_cost
+    for demand, probability in chances:
+        shortfall_values = calculation.calculate_shortfall(M_nf, demand, t)
+        C_total = calculation.calculate_shortfall_costs(t, shortfall_values, C_penalty, r_discount)
+        total_expected_cost += C_total * probability
+        each_chance_1[capacity].append((demand, total_expected_cost))
 
-run_tree(fixed_decisions, chance_1)
+    expected_costs[capacity] = total_expected_cost
+
+    # Select appropriate next chances based on the current capacity
+    next_chances = chance_2_high if capacity == 44 else chance_2_med if capacity == 34.2 else chance_2_low
+
+    # Recur for each remaining decision in the current chance scenario
+    if remaining_decisions:
+        analyze_tree(remaining_decisions, chances)  # Continue with the same chance for remaining decisions
+        analyze_tree([capacity], next_chances)  # Explore further depths for the current capacity with next chance
+
+analyze_tree(fixed_decisions, chance_1)
+
 # Print the results
 print(each_chance_1)
 for deployment, cost in expected_costs.items():

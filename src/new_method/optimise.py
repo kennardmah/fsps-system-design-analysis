@@ -1,7 +1,7 @@
 from scipy.optimize import minimize
 import numpy as np
-from capacityModels import nuclear_capacity, pv_capacity
-from energydemand_phase1 import generate_demand_scenarios
+from power_capacity import nuclear_capacity, pv_capacity
+from energy_demand_p1 import generate_demand_scenarios
 
 def objective_function(x, num_periods, maintenance_cost_nuclear, maintenance_cost_pv, cost_pv_additional):
     """

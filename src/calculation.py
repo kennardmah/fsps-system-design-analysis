@@ -2,9 +2,12 @@ import numpy as np
 from scipy.integrate import simps
 import matplotlib.pyplot as plt
 
-def calculate_costs(M_nf, M_components, C_launch, C_produce, C_payload, r):
+def discounted_value(costs, t, r_discount=0.55):
+    return np.sum(costs * (1 - r_discount)**t)
+
+def calculate_costs(M_nf, M_components, C_launch, C_produce, C_payload, r_eos):
     M_total = M_nf + M_components
-    C_nf = (M_total) * C_launch + (M_nf * C_produce + (M_total) * C_payload) * (1 - r)
+    C_nf = (M_total) * C_launch + (M_nf * C_produce + (M_total) * C_payload) * (1 - r_eos)
     return C_nf
 
 def nuclear_capacity(M_nf, time, EOPM=40/3969, decay_rate=0.0159):
@@ -17,9 +20,10 @@ def calculate_shortfall(M_nf, demand, t):
     supply = nuclear_capacity(M_nf, t)
     return np.maximum(demand - supply, 0)  # Only consider positive differences
 
-def calculate_shortfall_costs(t, shortfall_values, C_penalty):
+def calculate_shortfall_costs(t, shortfall_values, C_penalty, r_discount):
     integral = simps(shortfall_values, t)
-    return C_penalty * integral
+    # return C_penalty * integral
+    return discounted_value(C_penalty * integral, r_discount, t)
 
 def plot_power(t, demand):
     plt.figure(figsize=(10, 6))
