@@ -11,6 +11,11 @@ VARIABLE
 - p_operations : electrical power demand of the operations (data structure: list of tuples)
 '''
     
+### PRELIMINARY ANALYSIS STUFF BELOW
+def constant_demand(t, demand):
+    return demand * np.ones(t)
+
+### USEFUL STUFF BELOW
 def demand_calculator(elcss_headcount, elcss_power_per_person, operations):
     p_elcss = elcss_headcount * elcss_power_per_person
     p_operations = sum([operation[1] for operation in operations])
@@ -42,7 +47,7 @@ def plot_demand_simulations(demand_simulations):
 # plot the final value distribution to reflect researched energy demand
 def plot_final_value_distribution(demand_simulations):
     final_values = [demand_walk[-1] for demand_walk in demand_simulations]
-    plt.hist(final_values, bins=20, color='gray')
+    plt.hist(final_values, bins=20, color='0.4')
     plt.axvline(np.mean(final_values), color='red', linestyle='dashed', linewidth=1, label='Mean')
     plt.axvline(np.mean(final_values) + np.std(final_values), color='blue', linestyle='dashed', linewidth=1, label='Mean + Std Dev')
     plt.axvline(np.mean(final_values) - np.std(final_values), color='blue', linestyle='dashed', linewidth=1, label='Mean - Std Dev')
@@ -52,11 +57,12 @@ def plot_final_value_distribution(demand_simulations):
     plt.legend()  # Add legend to the plot
     plt.show()
 
-# std_dev of each steps should be std_dev/sqrt(num_steps) to keep the same std_dev for the final value
-# update code to call these values instead of hardcoding them
-mean, std_dev, num_simulations = 34.2, np.sqrt(4.8/21), 500
+if __name__ == "__main__":
+    # std_dev of each steps should be std_dev/sqrt(num_steps) to keep the same std_dev for the final value
+    # update code to call these values instead of hardcoding them
+    mean, std_dev, num_simulations = 34.2, np.sqrt(4.8/21), 500
 
-# store the same demand simulations for each to have a fair comparison
-demand_simulations = generate_demand_simulations(mean, std_dev, num_simulations)
-plot_demand_simulations(demand_simulations)
-plot_final_value_distribution(demand_simulations)
+    # store the same demand simulations for each to have a fair comparison
+    demand_simulations = generate_demand_simulations(mean, std_dev, num_simulations)
+    plot_demand_simulations(demand_simulations)
+    plot_final_value_distribution(demand_simulations)

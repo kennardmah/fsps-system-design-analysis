@@ -47,4 +47,5 @@ def plot_costs(t, C_total):
     plt.grid(True)
     plt.show()
 
-print(calculate_costs(3696, 1621, C_launch, C_produce, C_payload, r_eos))
+if __name__ == "__main__":
+    print(calculate_costs(3696, 1621, C_launch, C_produce, C_payload, r_eos))

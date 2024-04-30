@@ -8,7 +8,7 @@ def nuclear_capacity_time(kW, time, r_decay=0.0159):
     capacity_over_time = []
     for t in range(time):
         capacity_over_time.append(nuclear_capacity(kW, t, r_decay))
-    plot_energy_capacity(capacity_over_time)
+    # plot_energy_capacity(capacity_over_time)
     return capacity_over_time
 
 def plot_energy_capacity(capacity_over_time):
