@@ -24,7 +24,7 @@ r_discount = 0.55
 PARAMETERS
 """
 # COST RELATED
-M_nf_40 = 3929
+M_nf_40 = 3969
 M_components_40 = 1621
 M_total_40 = M_nf_40 + M_components_40
 
