@@ -1,0 +1,13 @@
+### Core Libraries (run pip install -r requirements.txt to install)
+
+# CALCULATION
+numpy == 1.22.1
+
+# DATA MANIPULATION
+pandas == 1.4.2
+
+# DATA VISUALIZATION
+matplotlib == 3.5.1
+seaborn == 0.11.2
+dash == 2.16.1
+
