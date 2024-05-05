@@ -1,0 +1,44 @@
+Citation
+
+[1] Mueller, R. P. (2022). Lunar Base Construction Overview v1 RPM. Presented at the ASCE Earth & Space Conference, April 25-28, Denver, CO. American Society of Civil Engineers. Kennedy Space Center. https://ntrs.nasa.gov/citations/20220000418
+
+[3] Janoiko, Barbara, et al. (2023) D-RATS 2022 Test Report. NASA JSC / JAXA Pressurized Rover Technical Interchange Meeting, 8 Dec. 2023, Houston, TX. National Aeronautics and Space Administration, https://ntrs.nasa.gov/citations/20230017073.
+
+[2] Wolfe, M. G. (1978). Future Orbital Power Systems Technol. Requirements. Paper presented at the NASA Lewis Research Center conference, September 1, 1978. National Aeronautics and Space Administration. https://ntrs.nasa.gov/citations/19790001954
+
+[4] Smitherman, David, et al. Deep Space Habitat Configurations Based On International Space Station Systems. NASA Marshall Space Flight Center, 2012. https://ntrs.nasa.gov/citations/20120014530.
+
+[5] https://ntrs.nasa.gov/citations/20220005893 Power and Energy for the Lunar Surface
+
+
+Nuclear power on the moon: https://www.iaea.org/sites/default/files/publications/magazines/bulletin/bull12-1/12104700912.pdf
+Solar cell array efficiency: https://apps.dtic.mil/sti/tr/pdf/ADA463695.pdf 
+
+Cell effieicny table: https://www.nrel.gov/pv/cell-efficiency.html cell-efficiency-data-table in excel
+
+Parametric study of a lunar base power systems https://www.mdpi.com/1996-1073/14/4/1141  
+
+[34] Haym Benaroya,
+Lunar habitats: A brief overview of issues and concepts,
+REACH,
+Volumes 7–8,
+2017,
+Pages 14-33,
+ISSN 2352-3093,
+https://doi.org/10.1016/j.reach.2018.08.002.
+(https://www.sciencedirect.com/science/article/pii/S2352309318300014)
+
+
+[6] Nuclear fission deployment cost: https://ntrs.nasa.gov/api/citations/20220004670/downloads/40%20kW%20Deployable%20FSP%20Paper_FINAL.pdf 
+
+[7] Landing Humans and Human-Class Cargo on the Moon and Mars
+
+[10] https://rps.nasa.gov/news/63/nasa-celebrates-45-years-of-voyager-1-enabled-by-radioisotope-power/ , https://www.hindawi.com/journals/stni/2022/9895907/#abstract 
+
+[20] https://learning.oreilly.com/library/view/reinforcement-learning-and/9781119815037/c02.xhtml#c02-hd01 
+[20.5] 		Skinner, D.C. (1999). Introduction to Decision Analysis. Gainesville, Fl: Probabilistic Publishing.
+[21] Luo, J., Hong, L.J., Nelson, B.L., and Wu, Y. (2015). Fully sequential procedures for large-scale ranking-and-selection problems in parallel computing environments. Operations Research 63(5): 1177–1194.
+
+
+[22] 		Boomsma, T.K., Meade, N., and Fleten, S.E. (2012). Renewable energy investments under different support schemes: A real options approach. European Journal of Operational Research 220(1): 225–237.
+[23] https://staff.washington.edu/paymana/papers/aero05_1.pdf
