@@ -9,17 +9,19 @@ def levelised_cost_of_electricity(c_total, p_demand, p_supply, t, r_discount):
     '''
     num = c_total[t]/((1+r_discount)**t) # Discounted total cost
     den = (min(p_demand[t], p_supply[t])/((1+r_discount)**t)) # Minimum of demand and supply
-    return num/den
+    return num, den
 
 def lcoe_at_time(c_total, p_demand, p_supply, r_discount):
     '''
     Calculate the levelised cost of electricity (LCOE) for a given total cost, total energy and number of years.
     '''
-    res = []
+    num, den = 0, 0
     for t in range(21):
-        res.append(levelised_cost_of_electricity(c_total, p_demand, p_supply, t, r_discount))
-    print(f"The LCOE for each year is: {res}")
-    return np.mean(res)
+        n, d = levelised_cost_of_electricity(c_total, p_demand, p_supply, t, r_discount)
+        num += n
+        den += d
+    print(f"The LCOE is: {num/den}")
+    return num/den
 
 # testing
 if __name__ == '__main__':
