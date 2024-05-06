@@ -18,12 +18,13 @@ def lcoe_at_time(c_total, p_demand, p_supply, r_discount):
     res = []
     for t in range(21):
         res.append(levelised_cost_of_electricity(c_total, p_demand, p_supply, t, r_discount))
-    print(res)
+    print(f"The LCOE for each year is: {res}")
     return np.mean(res)
 
 # testing
-c_total = [100 for x in range(21)]
-p_demand = [40 for x in range(21)]
-p_supply = [50 for x in range(21)]
-r_discount = 0.05
-print(lcoe_at_time(c_total, p_demand, p_supply, r_discount))
+if __name__ == '__main__':
+    c_total = [100 for x in range(21)]
+    p_demand = [40 for x in range(21)]
+    p_supply = [50 for x in range(21)]
+    r_discount = 0.05
+    print(lcoe_at_time(c_total, p_demand, p_supply, r_discount))

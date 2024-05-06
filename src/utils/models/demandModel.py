@@ -1,4 +1,5 @@
 import numpy as np
+import pandas as pd
 import matplotlib.pyplot as plt
 
 ### this file will estimate demand and return N simulations based on 'random walk' that the capacityModel will simulate with
@@ -64,5 +65,12 @@ if __name__ == "__main__":
 
     # store the same demand simulations for each to have a fair comparison
     demand_simulations = generate_demand_simulations(mean, std_dev, num_simulations)
+
+    # Convert demand simulations to a DataFrame
+    demand_table = pd.DataFrame(demand_simulations).T
+    demand_table.columns = [f"Simulation{i+1}" for i in range(len(demand_simulations))]
+    demand_table.index.name = "Time"
+    demand_table.to_csv("src/utils/data/demand_simulations.csv")  # Save demand_table as a CSV file in the data folder
+
     plot_demand_simulations(demand_simulations)
     plot_final_value_distribution(demand_simulations)
