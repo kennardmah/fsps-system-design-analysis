@@ -1,3 +1,11 @@
+'''
+capacityModel.py
+- the purpose of this model is to return a list for how much energy is produced every year
+- the model will be based on a decay rate of 1.59% per year (r_decay) that can be adjusted
+- the model will also have a function to add capacity at a certain time (t = 10)
+- import capacityModel and use function capacity_model for all in one function.
+'''
+
 import matplotlib.pyplot as plt
 
 def nuclear_capacity(kW, time, r_decay=0.0159):
@@ -27,11 +35,12 @@ def plot_energy_capacity(capacity_over_time):
     plt.legend()
     plt.show()
 
+def capacity_model(initial_kW, expansion_kW):
+    return add_capacity(nuclear_capacity_time(initial_kW), expansion_kW)
+
 # testing
 if __name__ == '__main__':
-    test_list = nuclear_capacity_time(40, 21)
+    test_list = capacity_model(100, 50)
+    plot_energy_capacity(test_list)
     print(test_list)
-    plot_energy_capacity(test_list)
-    add_capacity(test_list, 10)
-    plot_energy_capacity(test_list)
 
