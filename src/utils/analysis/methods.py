@@ -25,7 +25,7 @@ data = [
     flexible_40_20
 ]
 
-filename = "/Users/kennardmah/Documents/GitHub/masters-thesis-sustainable-lunar-energy/src/utils/data/implementation_methods.csv"
+filename = "src/utils/data/implementation_methods.csv"
 
 with open(filename, "w", newline="") as csvfile:
     writer = csv.writer(csvfile)
