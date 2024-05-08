@@ -1,6 +1,7 @@
 import numpy as np
 import capacityModel
 import csv
+from collections import defaultdict
 
 """
 costModel.py – calculate the cost at each time step and return the total cost
@@ -52,6 +53,7 @@ def E_total(capacity_over_time, demand_scenarios):
     for demand in demand_scenarios:
         energy_over_time = [0 for _ in range(21)]
         for t, val in enumerate(capacity_over_time):
+            # energy_over_time[t] = (min(val, demand[t]))*8760
             energy_over_time[t] = (min(val, demand[t]))*8760
         results.append(sum(energy_over_time))
     return results
@@ -67,16 +69,38 @@ if __name__ == '__main__':
     with open('src/utils/data/demand_scenarios.csv', 'r') as file:
         reader = csv.reader(file)
         demand_scenarios = [list(map(float, row)) for row in reader]
-
+    res = []
     for implementation_method, capacity_over_time in zip(implementation_methods, capacity_over_time):
         if implementation_method[0] != capacity_over_time[0]:
             print("-----------------------\nERROR: Mismatched implementation methods and capacity over time\n-----------------------")
             break
+        desc = implementation_method[0]
         implementation_method = list(map(float, implementation_method[1:]))
         capacity_over_time = list(map(float, capacity_over_time[1:]))
-        # print(implementation_method)
-        # print(capacity_over_time)
         C_outcome = C_total(implementation_method, capacityModel.measure_mass(implementation_method), capacity_over_time, demand_scenarios)
         E_outcome = E_total(capacity_over_time, demand_scenarios)
         LCOE = [c/e for c, e in zip(C_outcome, E_outcome)]
-        print(f"{implementation_method[0]}: {LCOE}")
+        res.append([desc] + LCOE)
+    print(res)
+
+    filename = "src/utils/data/decision_tree_outcome.csv"
+    with open(filename, "w", newline="") as csvfile:
+        writer = csv.writer(csvfile)
+        writer.writerows(res)
+
+    probabilities_1 = [1/3, 1/3, 1/3]
+    probabilities_2 = [0.7, 0.2, 0.1, 0.1, 0.8, 0.1, 0.1, 0.2, 0.7]
+    probabilities = [probabilities_1[i//3] for i in range(len(probabilities_2))]
+    # print(probabilities)
+
+    res = []
+    for i, j in zip(LCOE, probabilities_2):
+        print(i*j)
+        res.append(i*j)
+    res = [sum(res[i:i+3]) for i in range(0, len(res), 3)]
+    for i, j in zip(res, probabilities_2):
+        res.append(i*j)
+    res = res[:3]
+    # print(res)
+
+    # print(np.average(LCOE, weights=probabilities_2))
