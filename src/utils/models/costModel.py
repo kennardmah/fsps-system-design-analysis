@@ -55,7 +55,7 @@ def E_total(capacity_over_time, demand_scenarios):
     for demand in demand_scenarios:
         energy_over_time = [0 for _ in range(21)]
         for t, val in enumerate(capacity_over_time):
-            energy_over_time[t] = (min(val, demand[t]))*8760
+            energy_over_time[t] = discounted_value((min(val, demand[t]))*8760, t)
         results.append(sum(energy_over_time))
     return results
 
@@ -87,20 +87,3 @@ if __name__ == '__main__':
     with open(filename, "w", newline="") as csvfile:
         writer = csv.writer(csvfile)
         writer.writerows(res)
-
-    # probabilities_1 = [1/3, 1/3, 1/3]
-    # probabilities_2 = [0.7, 0.2, 0.1, 0.1, 0.8, 0.1, 0.1, 0.2, 0.7]
-    # probabilities = [probabilities_1[i//3] for i in range(len(probabilities_2))]
-    # print(probabilities)
-
-    # res = []
-    # for i, j in zip(LCOE, probabilities_2):
-    #     print(i*j)
-    #     res.append(i*j)
-    # res = [sum(res[i:i+3]) for i in range(0, len(res), 3)]
-    # for i, j in zip(res, probabilities_2):
-    #     res.append(i*j)
-    # res = res[:3]
-    # # print(res)
-
-    # print(np.average(LCOE, weights=probabilities_2))

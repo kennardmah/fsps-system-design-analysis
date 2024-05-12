@@ -54,7 +54,6 @@ new_flexible_40['med']  += (flexible_40[0][4:7])
 new_flexible_40['low']  += (flexible_40[0][7:])
 new_flexible_40['low']  += (flexible_40[1][7:])
 new_flexible_40['low']  += (flexible_40[2][7:])
-flexible_40 = new_flexible_40
 
 # converting to expected lcoe * probability 2 (e.g., $41.55/kWh * 0.7)
 temp_1 = []
@@ -62,7 +61,6 @@ for type in ['high', 'med', 'low']:
     temp_2 = []
     expected_payoffs = list(map(float, new_flexible_40[type]))
     prob_payoffs = [expected_payoffs[i]*first_prob[i%3] for i in range(9)]
-    # new_flexible_40[type] = prob_payoffs
     min_i, min_val = 0, float('inf')
     for i in range(3):
         temp_2.append([i, sum(prob_payoffs[i*3:i*3+3]), expected_payoffs[i*3:i*3+3]])
@@ -86,7 +84,6 @@ new_flexible_30['med']  += (flexible_30[0][4:7])
 new_flexible_30['low']  += (flexible_30[0][7:])
 new_flexible_30['low']  += (flexible_30[1][7:])
 new_flexible_30['low']  += (flexible_30[2][7:])
-flexible_30 = new_flexible_30
 
 # converting to expected lcoe * probability 1
 temp_1 = []
@@ -94,7 +91,6 @@ for type in ['high', 'med', 'low']:
     temp_2 = []
     expected_payoffs = list(map(float, new_flexible_30[type]))
     prob_payoffs = [expected_payoffs[i]*first_prob[i%3] for i in range(9)]
-    # new_flexible_30[type] = prob_payoffs
     min_i, min_val = 0, float('inf')
     for i in range(3):
         temp_2.append([i, sum(prob_payoffs[i*3:i*3+3]), expected_payoffs[i*3:i*3+3]])
@@ -104,6 +100,10 @@ for type in ['high', 'med', 'low']:
     temp_1 += temp_2[min_i][2]
 expected_LCOE.append(["flexible_30"] + temp_1)
 
-print(expected_LCOE)
+# Save expected LCOE as a CSV file
+output_filename = "src/utils/data/processed/decision_tree_optimal_path.csv"
+with open(output_filename, 'w', newline='') as file:
+    writer = csv.writer(file)
+    writer.writerows(expected_LCOE)
 
     
