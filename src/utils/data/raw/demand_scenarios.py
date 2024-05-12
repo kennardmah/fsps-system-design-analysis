@@ -13,7 +13,7 @@ demand_scenarios = [
 ]
 print(len(demand_scenarios), len(demand_scenarios[0]))
 
-filename = "src/utils/data/demand_scenarios.csv"
+filename = "src/utils/data/raw/demand_scenarios.csv"
 
 with open(filename, "w", newline="") as csvfile:
     writer = csv.writer(csvfile)

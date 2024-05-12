@@ -25,7 +25,7 @@ data = [
     flexible_40_20
 ]
 
-filename = "src/utils/data/implementation_methods.csv"
+filename = "src/utils/data/raw/implementation_methods.csv"
 
 with open(filename, "w", newline="") as csvfile:
     writer = csv.writer(csvfile)

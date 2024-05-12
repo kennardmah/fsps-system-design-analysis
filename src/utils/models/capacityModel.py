@@ -62,10 +62,8 @@ if __name__ == '__main__':
             flexible = add_capacity(nuclear_capacity_time(flexible_capacity), add)
             table_data.append([f"flexible_{flexible_capacity}_{add}"] + flexible)
 
-    # table_rows = ['inflexible_50', 'inflexible_60', 'flexible_30_0', 'flexible_30_10', 'flexible_30_20', 'flexible_40_0', 'flexible_40_10', 'flexible_40_20']
-    # table_columns = list(range(21))
 
-    filename = "src/utils/data/capacity_over_time.csv"
+    filename = "src/utils/data/raw/capacity_over_time.csv"
 
     with open(filename, "w", newline="") as csvfile:
         writer = csv.writer(csvfile)

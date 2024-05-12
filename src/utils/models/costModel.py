@@ -7,6 +7,9 @@ from collections import defaultdict
 costModel.py – calculate the cost at each time step and return the total cost
 """
 
+def discounted_value(cost, t, r_discount = 0.05):
+    return cost/((1+r_discount)**t)
+
 # Penalty Integral Calculation
 def calculate_C_penalty(capacity, demand, t, alpha_penalty = 0):
     integral = max(0, demand[t]-capacity[t])
@@ -33,18 +36,17 @@ def C_total(implementation_method, mass_over_time, capacity_over_time, demand_sc
     # add implementation cost
     for t, val in enumerate(implementation_method):
         cost_over_time = add_C_capital(cost_over_time, val, t)
-    # print("C_Cap",  cost_over_time)
     # add operational cost
     for t, val in enumerate(mass_over_time):
         cost_over_time[t] += calculate_C_operational(val[0], val[1])
-    # print("C_op", cost_over_time)
     # add penalty cost
     results = []
     for demand in demand_scenarios:
         cost = cost_over_time.copy()
         for t in range(21):
             cost[t] += calculate_C_penalty(capacity_over_time, demand, t)
-        # print("C_pen", cost)
+            # convert to discounted rate
+            cost[t] = discounted_value(cost[t], t)
         results.append(sum(cost))
     return results
 
@@ -53,20 +55,18 @@ def E_total(capacity_over_time, demand_scenarios):
     for demand in demand_scenarios:
         energy_over_time = [0 for _ in range(21)]
         for t, val in enumerate(capacity_over_time):
-            # energy_over_time[t] = (min(val, demand[t]))*8760
             energy_over_time[t] = (min(val, demand[t]))*8760
         results.append(sum(energy_over_time))
     return results
 
 if __name__ == '__main__':
-    # read csv files from data folder
-    with open('src/utils/data/implementation_methods.csv', 'r') as file:
+    with open('src/utils/data/raw/implementation_methods.csv', 'r') as file:
         reader = csv.reader(file)
         implementation_methods = list(reader)
-    with open('src/utils/data/capacity_over_time.csv', 'r') as file:
+    with open('src/utils/data/raw/capacity_over_time.csv', 'r') as file:
         reader = csv.reader(file)
         capacity_over_time = list(reader)
-    with open('src/utils/data/demand_scenarios.csv', 'r') as file:
+    with open('src/utils/data/raw/demand_scenarios.csv', 'r') as file:
         reader = csv.reader(file)
         demand_scenarios = [list(map(float, row)) for row in reader]
     res = []
@@ -81,26 +81,26 @@ if __name__ == '__main__':
         E_outcome = E_total(capacity_over_time, demand_scenarios)
         LCOE = [c/e for c, e in zip(C_outcome, E_outcome)]
         res.append([desc] + LCOE)
-    print(res)
+    # print(res)
 
-    filename = "src/utils/data/decision_tree_outcome.csv"
+    filename = "src/utils/data/processed/decision_tree_outcome.csv"
     with open(filename, "w", newline="") as csvfile:
         writer = csv.writer(csvfile)
         writer.writerows(res)
 
-    probabilities_1 = [1/3, 1/3, 1/3]
-    probabilities_2 = [0.7, 0.2, 0.1, 0.1, 0.8, 0.1, 0.1, 0.2, 0.7]
-    probabilities = [probabilities_1[i//3] for i in range(len(probabilities_2))]
+    # probabilities_1 = [1/3, 1/3, 1/3]
+    # probabilities_2 = [0.7, 0.2, 0.1, 0.1, 0.8, 0.1, 0.1, 0.2, 0.7]
+    # probabilities = [probabilities_1[i//3] for i in range(len(probabilities_2))]
     # print(probabilities)
 
-    res = []
-    for i, j in zip(LCOE, probabilities_2):
-        print(i*j)
-        res.append(i*j)
-    res = [sum(res[i:i+3]) for i in range(0, len(res), 3)]
-    for i, j in zip(res, probabilities_2):
-        res.append(i*j)
-    res = res[:3]
-    # print(res)
+    # res = []
+    # for i, j in zip(LCOE, probabilities_2):
+    #     print(i*j)
+    #     res.append(i*j)
+    # res = [sum(res[i:i+3]) for i in range(0, len(res), 3)]
+    # for i, j in zip(res, probabilities_2):
+    #     res.append(i*j)
+    # res = res[:3]
+    # # print(res)
 
     # print(np.average(LCOE, weights=probabilities_2))
