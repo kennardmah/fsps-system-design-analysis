@@ -2,7 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 # Read the data from the CSV file into a DataFrame called 'table'
-table = pd.read_csv('src/utils/analysis/robust_strategy_table.csv')
+table = pd.read_csv('src/utils/analysis/testing/robust_strategy_table.csv')
 
 # Group the data by 'capacity'
 grouped_data = table.groupby('Capacity')
