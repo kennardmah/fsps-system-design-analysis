@@ -15,7 +15,7 @@ def calculate_C_penalty(capacity, demand, t, alpha_penalty = 0):
     integral = max(0, demand[t]-capacity[t])
     return alpha_penalty * integral
 
-# Development Cost
+# Development Cost at time t
 def calculate_C_capital(kW, mass_ratio = 3969/40, C_launch = 2720, C_produce = 43000, C_payload = 3500, r_eos = 0):
     M_nf = kW * mass_ratio
     M_components = 1621/40 * kW
@@ -23,14 +23,16 @@ def calculate_C_capital(kW, mass_ratio = 3969/40, C_launch = 2720, C_produce = 4
     C_nf = (M_total) * C_launch + (M_nf * C_produce + (M_total) * C_payload) * (1 - r_eos)
     return C_nf
 
-# Operational Cost at t
+# Operational Cost per year
 def calculate_C_operational(M_nf, M_components, cost_per_mass = 0):
     return (M_nf + M_components) * cost_per_mass
 
+# Add Capital Cost at time t
 def add_C_capital(cost_over_time, kW, t):
     cost_over_time[t] += calculate_C_capital(kW)
     return cost_over_time
 
+# Combined Cost Calculation
 def C_total(implementation_method, mass_over_time, capacity_over_time, demand_scenarios):
     cost_over_time = [0 for _ in range(21)]
     # add implementation cost
@@ -40,24 +42,24 @@ def C_total(implementation_method, mass_over_time, capacity_over_time, demand_sc
     for t, val in enumerate(mass_over_time):
         cost_over_time[t] += calculate_C_operational(val[0], val[1])
     # add penalty cost
-    results = []
+    res = []
     for demand in demand_scenarios:
         cost = cost_over_time.copy()
         for t in range(21):
             cost[t] += calculate_C_penalty(capacity_over_time, demand, t)
             # convert to discounted rate
             cost[t] = discounted_value(cost[t], t)
-        results.append(sum(cost))
-    return results
+        res.append(sum(cost))
+    return res
 
 def E_total(capacity_over_time, demand_scenarios):
-    results = []
+    res = []
     for demand in demand_scenarios:
         energy_over_time = [0 for _ in range(21)]
         for t, val in enumerate(capacity_over_time):
             energy_over_time[t] = discounted_value((min(val, demand[t]))*8760, t)
-        results.append(sum(energy_over_time))
-    return results
+        res.append(sum(energy_over_time))
+    return res
 
 if __name__ == '__main__':
     with open('src/utils/data/raw/implementation_methods.csv', 'r') as file:

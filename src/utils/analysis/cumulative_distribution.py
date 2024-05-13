@@ -21,20 +21,38 @@ for outcomes in expected_payoffs:
     outcomes = list(map(float, outcomes[1:]))
     data = []
     for lcoe, prob in zip(outcomes, second_prob):
-        data.extend([lcoe] * int(prob * 100))
+        data.append([lcoe, prob])
+    data.sort(key=lambda x: x[0])
     all_data.append(data)
-
 color = [[163, 206, 220], [93, 120, 105], [70, 70, 100],  [118, 118, 118]]
 color = [(r/255, g/255, b/255) for r, g, b in color]
 mean = []
 for i, data in enumerate(all_data):
-    # plt.axvline(np.mean(data), linestyle='dotted', color=color[i])
-    plt.hist(data, cumulative=True, bins=10, edgecolor='none', alpha=0.5, color=color[i])
-    mean.append(np.mean(data))
-plt.xlabel('LCOE')
-plt.ylabel('Frequency')
-plt.title('Histogram Distribution of LCOE')
+    values = [x[0] for x in data]
+    probabilities = [x[1] for x in data]
+    mean.append(np.dot(values, probabilities))
+    cumulative_probabilities = []
+    cumulative_sum = 0
+    for prob in probabilities:
+        cumulative_sum += prob
+        cumulative_probabilities.append(cumulative_sum)
+    plt.step(values, cumulative_probabilities, color = color[i], where='post', label='CDF')
+plt.xlabel('LCOE (Levelised Cost of Electricity)')
+plt.ylabel('Cumulative Probability')
 plt.legend(legend)
 for m, c in zip(mean, color):
     plt.axvline(m, linestyle='dashed', color=c)
 plt.show()
+
+# mean = []
+# for i, data in enumerate(all_data):
+#     # plt.axvline(np.mean(data), linestyle='dotted', color=color[i])
+#     plt.hist(data, cumulative=True, bins=10, edgecolor='none', alpha=0.5, color=color[i])
+#     mean.append(np.mean(data))
+# plt.xlabel('LCOE')
+# plt.ylabel('Cumulative Probability')
+# plt.title('Histogram Distribution of LCOE')
+# plt.legend(legend)
+# for m, c in zip(mean, color):
+#     plt.axvline(m, linestyle='dashed', color=c)
+# plt.show()
