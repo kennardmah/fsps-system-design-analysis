@@ -11,7 +11,7 @@ sys.path.append('src/utils/analysis')
 import expectedPayoff as ep
 import cumulativeDistribution as cd
 
-alpha_penalty = [250000 * i for i in range(0, 5)]
+alpha_penalty = [1000 * i for i in range(0, 2000)]
 graph = []
 for alpha in alpha_penalty:
     cm.main(alpha)
@@ -31,9 +31,9 @@ i = 0
 color = [(r/255, g/255, b/255) for r, g, b in [[163, 206, 220], [93, 120, 105], [70, 70, 100],  [118, 118, 118]]]
 for typ, points in results.items():
     alpha_vals, res = zip(*points)
-    ax.plot(res, alpha_vals, label=typ, color=color[i], marker='o')
-    for x, y in zip(res, alpha_vals):
-        ax.text(x, y, f'{x:.1f}', ha='center', va='bottom')
+    ax.plot(res, alpha_vals, label=typ, color=color[i])
+    # for x, y in zip(res, alpha_vals):
+        # ax.text(x, y, f'{x:.2f}', ha='center', va='bottom')
     i += 1
 
 ax.set_xlabel('E[LCOE]')
