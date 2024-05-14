@@ -42,7 +42,7 @@ def main():
     plt.legend(legend)
     for m, c in zip(mean, color):
         plt.axvline(m[1], linestyle='dashed', color=c)
-    plt.show()
+    # plt.show()
     return mean
 
 if __name__ == "__main__":
