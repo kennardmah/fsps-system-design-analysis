@@ -6,7 +6,7 @@ import csv
 from collections import defaultdict
 import numpy as np
 
-def main():
+def main(first_prob = [1/3, 1/3, 1/3]):
     filename = "src/utils/data/processed/decision_tree_outcome.csv"
     with open(filename, 'r') as file:
         reader = csv.reader(file)
@@ -18,7 +18,6 @@ def main():
 
     flexible_30 = []
     flexible_40 = []
-    first_prob = [1/3, 1/3, 1/3]
     expected_LCOE = []
 
     for i in range(len(expected_payoffs)):

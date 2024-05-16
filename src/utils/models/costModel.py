@@ -9,7 +9,7 @@ from collections import defaultdict
 costModel.py – calculate the cost at each time step and return the total cost
 """
 
-def main(alpha = 0):
+def main(alpha=1000000):
     
     with open('src/utils/data/raw/implementation_methods.csv', 'r') as file:
         reader = csv.reader(file)
