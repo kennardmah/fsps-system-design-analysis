@@ -19,37 +19,36 @@ def find_intersections(x_values, y_values):
             # Linear interpolation formula to find the x-value where y = 0
             return(x1 - y1 * (x2 - x1) / (y2 - y1))
             
-alpha_penalty = [500000]
-alpha_penalty = [54750 * i for i in range(0, 33)]
+alpha_penalty = [1 * 20 * 365 * 24]
+# alpha_penalty = [54750 * i for i in range(0, 33)]
 print(alpha_penalty)
 graph = []
 for alpha in alpha_penalty:
     cm.main(alpha)
     ep.main()
-    graph.append([alpha, cd.main(plot=False)])
+    graph.append([alpha, cd.main(plot=True)])
 
 '''
-plotting methods
+plotting the difference between the best inflexible and flexible
 '''
-# results = {}
-# for alpha_val, values in graph:
-#     for typ, result in values:
-#         if typ not in results:
-#             results[typ] = []
-#         results[typ].append((alpha_val, result))
-# fig, ax = plt.subplots()
-# i = 0
-# color = [(r/255, g/255, b/255) for r, g, b in [[163, 206, 220], [93, 120, 105], [70, 70, 100],  [118, 118, 118]]]
-# for typ, points in results.items():
-#     alpha_vals, res = zip(*points)
-#     ax.plot(res, alpha_vals, label=typ, color=color[i])
-#     # for x, y in zip(res, alpha_vals):
-#         # ax.text(x, y, f'{x:.2f}', ha='center', va='bottom')
-#     i += 1
-# ax.set_xlabel('E[LCOE]')
-# ax.set_ylabel('$ per kW missed')
-# ax.legend()
-# plt.show()
+results = {}
+for alpha_val, values in graph:
+    for typ, result in values:
+        if typ not in results:
+            results[typ] = []
+        results[typ].append((alpha_val, result))
+fig, ax = plt.subplots()
+i = 0
+color = [(r/255, g/255, b/255) for r, g, b in [[163, 206, 220], [93, 120, 105], [70, 70, 100],  [118, 118, 118]]]
+for typ, points in results.items():
+    alpha_vals, res = zip(*points)
+    ax.plot(res, alpha_vals, label=typ, color=color[i])
+    i += 1
+ax.set_xlabel('E[LCOE]')
+ax.set_ylabel('$ per kW missed')
+ax.legend()
+plt.show()
+
 x_results, y_results = [], []
 vert_line = 0
 for alpha_val, values in graph:
