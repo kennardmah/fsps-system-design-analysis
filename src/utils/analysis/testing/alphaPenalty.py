@@ -19,8 +19,8 @@ def find_intersections(x_values, y_values):
             # Linear interpolation formula to find the x-value where y = 0
             return(x1 - y1 * (x2 - x1) / (y2 - y1))
             
-alpha_penalty = [1 * 20 * 365 * 24]
-# alpha_penalty = [54750 * i for i in range(0, 33)]
+# alpha_penalty = [1 * 20 * 365 * 24]
+alpha_penalty = [54750 * i for i in range(0, 33)]
 print(alpha_penalty)
 graph = []
 for alpha in alpha_penalty:
