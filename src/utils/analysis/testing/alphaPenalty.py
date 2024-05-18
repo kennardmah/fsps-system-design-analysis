@@ -4,6 +4,8 @@ getting the E[LCOE] with different alpha_penalty values
 
 import matplotlib.pyplot as plt
 import sys
+sys.path.append('tools')
+from design import colors
 sys.path.append('src/utils/models')
 import costModel as cm
 sys.path.append('src/utils/analysis')
@@ -21,12 +23,12 @@ def find_intersections(x_values, y_values):
             
 # alpha_penalty = [1 * 20 * 365 * 24]
 alpha_penalty = [54750 * i for i in range(0, 33)]
-print(alpha_penalty)
+print([_/(20*365*24) for _ in alpha_penalty])
 graph = []
 for alpha in alpha_penalty:
     cm.main(alpha)
     ep.main()
-    graph.append([alpha, cd.main(plot=True)])
+    graph.append([alpha, cd.main(plot=False, choose_best=False)])
 
 '''
 plotting the difference between the best inflexible and flexible
@@ -34,6 +36,11 @@ plotting the difference between the best inflexible and flexible
 results = {}
 for alpha_val, values in graph:
     for typ, result in values:
+        # rename variables
+        if typ == "inflexible_50":
+            typ = "robust_50"
+        elif typ == "inflexible_60":
+            typ = "robust_60"
         if typ not in results:
             results[typ] = []
         results[typ].append((alpha_val, result))
@@ -42,10 +49,11 @@ i = 0
 color = [(r/255, g/255, b/255) for r, g, b in [[163, 206, 220], [93, 120, 105], [70, 70, 100],  [118, 118, 118]]]
 for typ, points in results.items():
     alpha_vals, res = zip(*points)
+    alpha_vals = [i/(20*365*24) for i in alpha_vals]
     ax.plot(res, alpha_vals, label=typ, color=color[i])
     i += 1
 ax.set_xlabel('E[LCOE]')
-ax.set_ylabel('$ per kW missed')
+ax.set_ylabel('Penalty Cost for Energy Shortage ($/kWh)')
 ax.legend()
 plt.show()
 
@@ -61,16 +69,20 @@ for alpha_val, values in graph:
 y_results = np.array(y_results)
 
 # Create the plot
+intersect = find_intersections(x_results, y_results)
+
 plt.plot(x_results, y_results, color='0.3', linestyle='-')
-plt.fill_between(x_results, y_results, 0, hatch = '/', edgecolor = '0.5', facecolor='0.8')
-plt.xlabel('Penalty for Energy Shortage ($/kWh)')
-plt.ylabel('Benefit of Flexibility over Inflexibility ( ΔE[LCOE] )')
-plt.axvline(x=(find_intersections(x_results, y_results)), color='0.5', linestyle='--')
-plt.axhline(y=0, color='0.3', linestyle='-')
-plt.grid(True)
+plt.grid(axis='y', zorder=3)
+plt.fill_between(x_results, y_results, 0, hatch = '//', edgecolor = colors["dark_green"], facecolor=colors["green"], zorder=2, label = 'Positive Difference')
+plt.fill_between(x_results, y_results, 0, where = x_results > intersect, hatch = '//', edgecolor = colors["dark_red"], facecolor=colors["red"], zorder=2, label = 'Negative Difference')
+plt.xlabel('Cost Penalty for Energy Shortage [$/kWh]')
+plt.ylabel('Difference in Flexible vs. Robust Outcomes (ΔE[LCOE])')
+plt.axvline(x=intersect, color=colors["dark_grey"], linestyle='--')
+plt.axhline(y=0, color='0', linestyle='-')
 plt.tight_layout() 
 plt.ylim(y_results[-1], y_results[0])
 plt.xlim(0, 10)
 plt.xticks([i for i in range(0, 11)])
 plt.yticks([i for i in range(int(y_results[-1]-1), int(y_results[0])+2)])
+plt.legend()
 plt.show()

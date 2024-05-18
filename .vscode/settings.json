@@ -1,5 +1,6 @@
 {
     "python.analysis.extraPaths": [
-        "./src/utils/models"
+        "./src/utils/models",
+        "./tools"
     ]
 }
