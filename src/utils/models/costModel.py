@@ -1,7 +1,5 @@
-import numpy as np
 import capacityModel
 import csv
-from collections import defaultdict
 # import argparse
 
 
@@ -9,7 +7,7 @@ from collections import defaultdict
 costModel.py – calculate the cost at each time step and return the total cost
 """
 
-def main(alpha=500000):
+def main(alpha=175200, simulation=False):
     
     with open('src/utils/data/raw/implementation_methods.csv', 'r') as file:
         reader = csv.reader(file)
@@ -17,10 +15,15 @@ def main(alpha=500000):
     with open('src/utils/data/raw/capacity_over_time.csv', 'r') as file:
         reader = csv.reader(file)
         capacity_over_time = list(reader)
-    with open('src/utils/data/raw/demand_scenarios.csv', 'r') as file:
-        reader = csv.reader(file)
-        demand_scenarios = [list(map(float, row)) for row in reader]
-
+    if simulation == True:
+        with open('src/utils/data/raw/demand_simulations.csv', 'r') as file:
+            reader = csv.reader(file)
+            demand_scenarios = [list(map(float, row[1:])) for row in reader]
+            demand_scenarios = demand_scenarios[1:]
+    else: 
+        with open('src/utils/data/raw/demand_scenarios.csv', 'r') as file:
+            reader = csv.reader(file)
+            demand_scenarios = [list(map(float, row)) for row in reader]
     res = []
     for implementation_method, capacity_over_time in zip(implementation_methods, capacity_over_time):
         if implementation_method[0] != capacity_over_time[0]:
@@ -33,7 +36,9 @@ def main(alpha=500000):
         E_outcome = E_total(capacity_over_time, demand_scenarios)
         LCOE = [c/e for c, e in zip(C_outcome, E_outcome)]
         res.append([desc] + LCOE)
-    filename = "src/utils/data/processed/decision_tree_outcome.csv"
+    if simulation == True:
+        filename = "src/utils/data/processed/decision_tree_outcome_sim.csv"
+    else: filename = "src/utils/data/processed/decision_tree_outcome.csv"
     with open(filename, "w", newline="") as csvfile:
         writer = csv.writer(csvfile)
         writer.writerows(res)
@@ -94,7 +99,4 @@ def E_total(capacity_over_time, demand_scenarios):
     return res
 
 if __name__ == '__main__':
-    # parser = argparse.ArgumentParser(description="Run analysis with parameter alpha_penalty")
-    # parser.add_argument('alpha_penalty', type=float, help="The value of parameter alpha_penalty")
-    # args = parser.parse_args()
-    main()
+    main(simulation=True)

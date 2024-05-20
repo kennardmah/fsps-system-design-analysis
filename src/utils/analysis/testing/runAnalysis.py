@@ -11,7 +11,7 @@ import cumulativeDistribution as cd
 alpha_penalty = 1 * 20 * 365 * 24
 # alpha_penalty = 500000
 
-cm.main(alpha_penalty)
+cm.main(alpha_penalty, simulation=False)
 ep.main()
 cd.main(plot=True, choose_best=True)
 
