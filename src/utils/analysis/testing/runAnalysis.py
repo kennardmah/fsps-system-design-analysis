@@ -19,7 +19,7 @@ def main_tree():
 
 def main_sim():
     dm.main()
-    cm.main(alpha=6.195569213940132 * 20 * 365 * 24, simulation=True)
+    cm.main(alpha= 6.195569213940132 * 20 * 365 * 24, simulation=True)
     cd.main_sim()
 
 if __name__ == "__main__":

@@ -19,7 +19,7 @@ VARIABLE
 def main():
     # std_dev of each steps should be std_dev/sqrt(num_steps) to keep the same std_dev for the final value
     # update code to call these values instead of hardcoding them
-    mean, std_dev, num_simulations = 34.2, np.sqrt(4.8/21), 500
+    mean, std_dev, num_simulations = 34.2, np.sqrt(4.8/21), 1000
 
     # store the same demand simulations for each to have a fair comparison
     demand_simulations = generate_demand_simulations(mean, std_dev, num_simulations)
@@ -64,10 +64,11 @@ def plot_demand_simulations(demand_simulations, colors=colors):
         plt.plot(demand_walk, color=color[i], linewidth=0.3)
     plt.xlabel('Time (t) [years]')
     plt.ylabel('Energy Demand (kW)')
-    plt.title('Demand Forecast (using Random Walk)')
+    # plt.title('Demand Forecast (using Random Walk)')
     plt.xticks(range(len(demand_walk)))
     plt.xlim(0,20)
     plt.ylim(23.4, 45) 
+    plt.tight_layout()
     plt.show()
 
 # plot the final value distribution to reflect researched energy demand
@@ -79,7 +80,8 @@ def plot_final_value_distribution(demand_simulations, colors=colors):
     plt.axvline(np.mean(final_values) - np.std(final_values), color=colors["purple"], linestyle='--', linewidth=1)
     plt.xlabel('Final Value')
     plt.ylabel('Frequency')
-    plt.title('Distribution of Final Energy Demand')
+    # plt.title('Distribution of Final Energy Demand')
+    plt.tight_layout()
     plt.legend()
     plt.show()
 
