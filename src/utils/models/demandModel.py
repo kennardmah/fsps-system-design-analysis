@@ -15,7 +15,19 @@ VARIABLE
     - elcss_power_per_person : power demand per person (data structure: float)
 - p_operations : electrical power demand of the operations (data structure: list of tuples)
 '''
-    
+
+def main():
+    # std_dev of each steps should be std_dev/sqrt(num_steps) to keep the same std_dev for the final value
+    # update code to call these values instead of hardcoding them
+    mean, std_dev, num_simulations = 34.2, np.sqrt(4.8/21), 500
+
+    # store the same demand simulations for each to have a fair comparison
+    demand_simulations = generate_demand_simulations(mean, std_dev, num_simulations)
+    demand_table = pd.DataFrame(demand_simulations)
+    demand_table.to_csv("src/utils/data/raw/demand_simulations.csv")
+    plot_demand_simulations(demand_simulations)
+    plot_final_value_distribution(demand_simulations)
+
 ### PRELIMINARY ANALYSIS STUFF BELOW
 def constant_demand(t, demand):
     return demand * np.ones(t)
@@ -72,13 +84,4 @@ def plot_final_value_distribution(demand_simulations, colors=colors):
     plt.show()
 
 if __name__ == "__main__":
-    # std_dev of each steps should be std_dev/sqrt(num_steps) to keep the same std_dev for the final value
-    # update code to call these values instead of hardcoding them
-    mean, std_dev, num_simulations = 34.2, np.sqrt(4.8/21), 500
-
-    # store the same demand simulations for each to have a fair comparison
-    demand_simulations = generate_demand_simulations(mean, std_dev, num_simulations)
-    demand_table = pd.DataFrame(demand_simulations)
-    demand_table.to_csv("src/utils/data/raw/demand_simulations.csv")
-    plot_demand_simulations(demand_simulations)
-    plot_final_value_distribution(demand_simulations)
+    main()

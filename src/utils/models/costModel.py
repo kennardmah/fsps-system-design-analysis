@@ -34,10 +34,14 @@ def main(alpha=175200, simulation=False):
         capacity_over_time = list(map(float, capacity_over_time[1:]))
         C_outcome = C_total(implementation_method, capacityModel.measure_mass(implementation_method), capacity_over_time, demand_scenarios, alpha)
         E_outcome = E_total(capacity_over_time, demand_scenarios)
+        # print("Cost Outcome", len(C_outcome))
+        # print("Energy Outcome", len(E_outcome))
+        # print("res", len(res))
         LCOE = [c/e for c, e in zip(C_outcome, E_outcome)]
         res.append([desc] + LCOE)
+    print(len(res[0]))
     if simulation == True:
-        filename = "src/utils/data/processed/decision_tree_outcome_sim.csv"
+        filename = "src/utils/data/raw/decision_tree_outcome_sim.csv"
     else: filename = "src/utils/data/processed/decision_tree_outcome.csv"
     with open(filename, "w", newline="") as csvfile:
         writer = csv.writer(csvfile)

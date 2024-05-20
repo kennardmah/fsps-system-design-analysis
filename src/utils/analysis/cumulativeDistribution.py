@@ -8,14 +8,13 @@ import sys
 sys.path.append('tools')
 from design import colors
 
-def main(probabilities = [[1/3, 1/3, 1/3], [0.7, 0.2, 0.1, 0.1, 0.8, 0.1, 0.1, 0.2, 0.7]], plot = False, choose_best = False):
+def main_tree(probabilities = [[1/3, 1/3, 1/3], [0.7, 0.2, 0.1, 0.1, 0.8, 0.1, 0.1, 0.2, 0.7]], plot = False, choose_best = False):
 
     # read in decision_tree_optimal_path.csv
     filename = "src/utils/data/processed/decision_tree_optimal_path.csv"
     with open(filename, 'r') as file:
         reader = csv.reader(file)
         expected_payoffs = list(reader)
-
     # define probabilities
     first_prob, second_prob = probabilities[0], copy.deepcopy(probabilities[1])
 
@@ -57,7 +56,6 @@ def main(probabilities = [[1/3, 1/3, 1/3], [0.7, 0.2, 0.1, 0.1, 0.8, 0.1, 0.1, 0
         dark_color = [colors["dark_purple"], colors["dark_blue"]]
         legend = [legend[i] for i in [best_inflex[0], best_flex[0]]]
         legend = ['Robust', 'Flexible']
-    # else: plt.figure(figsize=(18, 6))
     for i, data in enumerate(all_data):
         values = [x[0] for x in data]
         probabilities = [x[1] for x in data]
@@ -89,9 +87,54 @@ def main(probabilities = [[1/3, 1/3, 1/3], [0.7, 0.2, 0.1, 0.1, 0.8, 0.1, 0.1, 0
         for m, c in zip(mean, color):
             plt.axvline(m[1], linestyle='dashed', color=c)
         plt.show()
-    # print(mean)
     return mean
 
+def main_sim():
+    process_simulation_outcomes()
+    filename = "src/utils/data/processed/decision_tree_outcome_sim.csv"
+    legend, values = [], []
+    mean = []
+    color = [colors["blue"], colors["dark_blue"], colors["purple"], colors["dark_purple"]]
+    with open(filename, 'r') as file:
+        reader = csv.reader(file)
+        expected_payoffs = list(reader)
+    for row in expected_payoffs:
+        values.append(list(map(float, row[1:])))
+        legend.append(row[0])
+        mean.append([row[0], np.mean(values[-1])])
+    for i, row_values in enumerate(values):
+        sorted_values = sorted(row_values)
+        cumulative_probabilities = np.arange(1, len(sorted_values) + 1) / len(sorted_values)
+        plt.plot(sorted_values, cumulative_probabilities, color=color[i])
+    plt.xlabel('Value')
+    plt.ylabel('Cumulative Probability')
+    plt.title('Cumulative Distribution Function')
+    plt.grid(True)
+    plt.legend(legend)
+    for i in range(len(mean)):
+        plt.axvline(mean[i][1], linestyle='dashed', color=color[i])
+    plt.show()
+
+def process_simulation_outcomes():
+    filename = "src/utils/data/raw/decision_tree_outcome_sim.csv"
+    with open(filename, 'r') as file:
+        reader = csv.reader(file)
+        e_lcoe = [[row[0]] + list(map(float, row[1:])) for row in reader]
+    flexible_30, flexible_40 = ["flexible_30"], ["flexible_40"]
+    for i in range(1, len(e_lcoe[0])):
+        min_flex_30 = min([row[i] for row in e_lcoe[2:5]])
+        min_flex_40 = min([row[i] for row in e_lcoe[5:7]])
+        flexible_30.append(min_flex_30)
+        flexible_40.append(min_flex_40)
+    e_lcoe = [e_lcoe[0], e_lcoe[1], flexible_40, flexible_30]
+    filename = "src/utils/data/processed/decision_tree_outcome_sim.csv"
+    with open(filename, 'w', newline='') as file:
+        writer = csv.writer(file)
+        writer.writerows(e_lcoe)
+        
+
+# testing
 if __name__ == "__main__":
-    main(plot=True, choose_best = False)
-    main(plot=True, choose_best = True)
+    # main_tree(plot=True, choose_best = False)
+    # main_tree(plot=True, choose_best = True)
+    main_sim()
