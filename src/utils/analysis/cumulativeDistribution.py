@@ -89,7 +89,7 @@ def main_tree(probabilities = [[1/3, 1/3, 1/3], [0.7, 0.2, 0.1, 0.1, 0.8, 0.1, 0
         plt.show()
     return mean
 
-def main_sim():
+def main_sim(plot = True):
     process_simulation_outcomes()
     filename = "src/utils/data/processed/decision_tree_outcome_sim.csv"
     legend, values = [], []
@@ -102,46 +102,44 @@ def main_sim():
         values.append(list(map(float, row[1:])))
         legend.append(row[0])
         mean.append([row[0], np.mean(values[-1])])
-        plt.annotate(f'E[LCOE]', xy=(mean[-1][1] + 0.3, 0.1), xycoords='data', ha='left', fontsize=9, weight = 'bold', color=color[legend.index(row[0])])
-        plt.annotate(f'= {mean[-1][1]:.2f}', xy=(mean[-1][1] + 0.3, 0.05), xycoords='data', ha='left', fontsize=9, weight = 'semibold', color=color[legend.index(row[0])])
+        if plot:
+            plt.annotate(f'E[LCOE]', xy=(mean[-1][1] + 0.3, 0.1), xycoords='data', ha='left', fontsize=9, weight = 'bold', color=color[legend.index(row[0])])
+            plt.annotate(f'= {mean[-1][1]:.2f}', xy=(mean[-1][1] + 0.3, 0.05), xycoords='data', ha='left', fontsize=9, weight = 'semibold', color=color[legend.index(row[0])])
     for i, row_values in enumerate(values):
         sorted_values = sorted(row_values)
-        plt.axvline(sorted_values[0], linestyle='dashed', color=color[i])
-        plt.axvline(sorted_values[-1], linestyle='dashed', color=color[i])
-        plt.annotate(f'min[LCOE]', xy=(sorted_values[0] + 0.3, 0.85 - 0.1*i), xycoords='data', ha='left', fontsize=8, weight = 'bold', color=color[i])
-        plt.annotate(f'= {sorted_values[0]:.2f}', xy=(sorted_values[0] + 0.3, 0.8-0.1*i), xycoords='data', ha='left', fontsize=8, weight = 'semibold', color=color[i])
-        plt.annotate(f'max[LCOE]', xy=(sorted_values[-1] + 0.3, 0.85 - 0.1*i), xycoords='data', ha='left', fontsize=8, weight = 'bold', color=color[i])
-        plt.annotate(f'= {sorted_values[-1]:.2f}', xy=(sorted_values[-1] + 0.3, 0.8 - 0.1*i), xycoords='data', ha='left', fontsize=8, weight = 'semibold', color=color[i])
-        cumulative_probabilities = np.arange(1, len(sorted_values) + 1) / len(sorted_values)
-        plt.plot(sorted_values, cumulative_probabilities, color=color[i])
-    custom_lines = [Line2D([0], [0], color=c, lw=4) for c in color]
-    plt.legend(custom_lines, legend, loc = 'lower right')
-    plt.xlabel('LCOE (Levelised Cost of Electricity) [$/kWh]')
-    plt.ylabel('Cumulative Probability')
-    plt.grid(axis='y', linewidth=0.5)
-    plt.ylim(0, 1)
-    plt.xlim(left = min(sorted(row_values)[0] for row_values in values) - 0.5, right = max(sorted(row_values)[-1] for row_values in values) + 3.3)
-    for i in range(len(mean)):
-        plt.axvline(mean[i][1], linestyle='dashed', color=color[i])
-    plt.tight_layout()
-    plt.show()
+        if plot:
+            plt.axvline(sorted_values[0], linestyle='dashed', color=color[i])
+            plt.axvline(sorted_values[-1], linestyle='dashed', color=color[i])
+            plt.annotate(f'min[LCOE]', xy=(sorted_values[0] + 0.3, 0.85 - 0.1*i), xycoords='data', ha='left', fontsize=8, weight = 'bold', color=color[i])
+            plt.annotate(f'= {sorted_values[0]:.2f}', xy=(sorted_values[0] + 0.3, 0.8-0.1*i), xycoords='data', ha='left', fontsize=8, weight = 'semibold', color=color[i])
+            plt.annotate(f'max[LCOE]', xy=(sorted_values[-1] + 0.3, 0.85 - 0.1*i), xycoords='data', ha='left', fontsize=8, weight = 'bold', color=color[i])
+            plt.annotate(f'= {sorted_values[-1]:.2f}', xy=(sorted_values[-1] + 0.3, 0.8 - 0.1*i), xycoords='data', ha='left', fontsize=8, weight = 'semibold', color=color[i])
+            cumulative_probabilities = np.arange(1, len(sorted_values) + 1) / len(sorted_values)
+            plt.plot(sorted_values, cumulative_probabilities, color=color[i])
+    if plot:
+        custom_lines = [Line2D([0], [0], color=c, lw=4) for c in color]
+        plt.legend(custom_lines, legend, loc = 'lower right')
+        plt.xlabel('LCOE (Levelised Cost of Electricity) [$/kWh]')
+        plt.ylabel('Cumulative Probability')
+        plt.grid(axis='y', linewidth=0.5)
+        plt.ylim(0, 1)
+        plt.xlim(left = min(sorted(row_values)[0] for row_values in values) - 0.5, right = max(sorted(row_values)[-1] for row_values in values) + 3.3)
+        for i in range(len(mean)):
+            plt.axvline(mean[i][1], linestyle='dashed', color=color[i])
+        plt.tight_layout()
+        plt.show()
+    return mean
 
 def process_simulation_outcomes():
     filename = "src/utils/data/raw/decision_tree_outcome_sim.csv"
     with open(filename, 'r') as file:
         reader = csv.reader(file)
         e_lcoe = [[row[0]] + list(map(float, row[1:])) for row in reader]
-    # flexible_30, flexible_40 = ["flexible_30"], ["flexible_40"]
     flexible, robust = ["flexible"], ["robust"]
     for i in range(1, len(e_lcoe[0])):
-        min_flex_30 = min([row[i] for row in e_lcoe[2:5]])
-        min_flex_40 = min([row[i] for row in e_lcoe[5:7]])
-        # flexible_30.append(min_flex_30)
-        # flexible_40.append(min_flex_40)
+        min_flex_30, min_flex_40 = min([row[i] for row in e_lcoe[2:5]]), min([row[i] for row in e_lcoe[5:7]])
         flexible.append(min(min_flex_30, min_flex_40))
-        robust.append(min([row[i] for row in e_lcoe[0:2]])
-                      )
-    # e_lcoe = [e_lcoe[0], e_lcoe[1], flexible_40, flexible_30]
+        robust.append(min([row[i] for row in e_lcoe[0:2]]))
     e_lcoe = [flexible, robust]
     filename = "src/utils/data/processed/decision_tree_outcome_sim.csv"
     with open(filename, 'w', newline='') as file:
@@ -151,6 +149,6 @@ def process_simulation_outcomes():
 
 # testing
 if __name__ == "__main__":
-    # main_tree(plot=True, choose_best = False)
-    # main_tree(plot=True, choose_best = True)
+    main_tree(plot=True, choose_best = False)
+    main_tree(plot=True, choose_best = True)
     main_sim()

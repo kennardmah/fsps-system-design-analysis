@@ -1,10 +1,8 @@
 """
 Read the "decision_tree_outcome.csv" file and calculate the expected payoff for each implementation method.
 """
-
 import csv
 from collections import defaultdict
-import numpy as np
 
 def main(first_prob = [1/3, 1/3, 1/3]):
     filename = "src/utils/data/processed/decision_tree_outcome.csv"
@@ -15,7 +13,6 @@ def main(first_prob = [1/3, 1/3, 1/3]):
     """
     Combine flexible implementation methods with the same initial capacity.
     """
-
     flexible_30 = []
     flexible_40 = []
     expected_LCOE = []

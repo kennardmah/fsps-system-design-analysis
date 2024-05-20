@@ -7,20 +7,18 @@ import expectedPayoff as ep
 import cumulativeDistribution as cd
 
 # intersection for E[LCOE]          
-# alpha_penalty = 6.195569213940132 * 20 * 365 * 24
-
 alpha_penalty = 1 * 20 * 365 * 24
-# alpha_penalty = 500000
 
-def main_tree():
-    cm.main(alpha=175200, simulation=False)
+def main_tree(alpha=175200, simulation=False, plot=True, choose_best=True):
+    cm.main(alpha=alpha, simulation=simulation)
     ep.main()
-    cd.main_tree(plot=True, choose_best=True)
+    cd.main_tree(plot=plot, choose_best=choose_best)
 
-def main_sim():
+def main_sim(alpha=6.195569213940132 * 20 * 365 * 24,simulation=True,plot=True):
     dm.main()
-    cm.main(alpha= 6.195569213940132 * 20 * 365 * 24, simulation=True)
-    cd.main_sim()
+    cm.main(alpha=alpha, simulation=simulation)
+    cd.main_sim(plot=plot)
 
 if __name__ == "__main__":
-    main_sim()
+    main_tree()
+    main_sim(alpha=alpha_penalty)

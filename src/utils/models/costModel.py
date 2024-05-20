@@ -36,7 +36,6 @@ def main(alpha=175200, simulation=False):
         E_outcome = E_total(capacity_over_time, demand_scenarios)
         LCOE = [c/e for c, e in zip(C_outcome, E_outcome)]
         res.append([desc] + LCOE)
-    print(len(res[0]))
     if simulation == True:
         filename = "src/utils/data/raw/decision_tree_outcome_sim.csv"
     else: filename = "src/utils/data/processed/decision_tree_outcome.csv"
@@ -62,7 +61,7 @@ def add_C_capital(cost_over_time, kW, t):
     return cost_over_time
 
 # Operational Cost per year
-def calculate_C_operational(M_nf, M_components, cost_per_mass = 0):
+def calculate_C_operational(M_nf, M_components, cost_per_mass = 100):
     return (M_nf + M_components) * cost_per_mass
 
 # Penalty Calculation at time t
