@@ -8,7 +8,7 @@ import sys
 sys.path.append('tools')
 from design import colors
 
-def main_tree(probabilities = [[1/3, 1/3, 1/3], [0.7, 0.2, 0.1, 0.1, 0.8, 0.1, 0.1, 0.2, 0.7]], plot = False, choose_best = False):
+def main_tree(probabilities = [[1/3, 1/3, 1/3], [0.7, 0.2, 0.1, 0.2, 0.6, 0.2, 0.1, 0.2, 0.7]], plot = False, choose_best = False):
 
     # read in decision_tree_optimal_path.csv
     filename = "src/utils/data/processed/decision_tree_optimal_path.csv"
@@ -43,6 +43,7 @@ def main_tree(probabilities = [[1/3, 1/3, 1/3], [0.7, 0.2, 0.1, 0.1, 0.8, 0.1, 0
     this part is for filtering to only show the best inflexible and flexible
     """
     if choose_best:
+        mean = [["robust"], ["flexible"]]
         for i, data in enumerate(all_data):
             e_lcoe = np.dot([x[0] for x in data], [x[1] for x in data])
             if i < 2:
@@ -159,6 +160,6 @@ def process_simulation_outcomes():
 
 # testing
 if __name__ == "__main__":
-    main_tree(plot=True, choose_best = False)
-    main_tree(plot=True, choose_best = True)
+    # main_tree(plot=True, choose_best = False)
+    print(main_tree(plot=True, choose_best = True))
     main_sim()
