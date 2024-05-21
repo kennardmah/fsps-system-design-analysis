@@ -21,4 +21,4 @@ def main_sim(alpha=6.195569213940132 * 20 * 365 * 24,simulation=True,plot=True):
 
 if __name__ == "__main__":
     main_tree()
-    main_sim(alpha=alpha_penalty)
+    # main_sim(alpha=alpha_penalty)

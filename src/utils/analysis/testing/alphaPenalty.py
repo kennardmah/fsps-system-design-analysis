@@ -14,7 +14,7 @@ import expectedPayoff as ep
 import cumulativeDistribution as cd
 import numpy as np
 
-def main(simulation=False, plot=True, alpha_penalty = [1 * 20 * 365 * 24]):
+def main(simulation=False, plot=False, alpha_penalty = [1 * 20 * 365 * 24]):
     graph = []
     if simulation:
         dm.main(plot=plot)
@@ -65,12 +65,13 @@ def plot_graph(x_results, y_results, intersect):
     plt.xticks([i for i in range(0, 11)])
     plt.yticks([i for i in range(int(y_results[-1]-1), int(y_results[0])+2)])
     plt.legend()
+    if intersect:
+        plt.savefig(f'src/utils/analysis/testing/figures/α_pen_sensitivity_analysis_{round(intersect*100)}.png')
     plt.show()
-    plt.savefig(f'src/utils/analysis/testing/figures/α_pen_sensitivity_analysis_{round(intersect*100)}.png')
 
 if __name__ == "__main__":
     alpha_penalty = [54750 * i for i in range(0, 33)]
     simulation = False
-    plot = True
+    plot = False
     # main(simulation=False)
     main(simulation, plot, alpha_penalty)

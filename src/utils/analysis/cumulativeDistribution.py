@@ -94,8 +94,8 @@ def main_tree(probabilities = [[1/3, 1/3, 1/3], [0.7, 0.2, 0.1, 0.1, 0.8, 0.1, 0
             color = dark_color
         for m, c in zip(mean, color):
             plt.axvline(m[1], linestyle='dashed', color=c)
-        plt.show()
         plt.savefig(f'src/utils/analysis/testing/figures/cdf_lcoe_{choose_best}_{right-0.5}.png')
+        plt.show()
     return mean
 
 def main_sim(plot = True):
@@ -136,8 +136,8 @@ def main_sim(plot = True):
         for i in range(len(mean)):
             plt.axvline(mean[i][1], linestyle='dashed', color=color[i])
         plt.tight_layout()
-        plt.show()
         plt.savefig(f'src/utils/analysis/testing/figures/cdf_lcoe_sim_{round(mean[0][1])}{round(mean[1][1])}.png')
+        plt.show()
     return mean
 
 def process_simulation_outcomes():
