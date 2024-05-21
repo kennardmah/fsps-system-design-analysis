@@ -61,8 +61,8 @@ def add_C_capital(cost_over_time, kW, t):
     return cost_over_time
 
 # Operational Cost per year
-def calculate_C_operational(M_nf, M_components, cost_per_mass = 100):
-    return (M_nf + M_components) * cost_per_mass
+def calculate_C_operational(M_nf, M_components, cost_per_mass = 2720):
+    return (M_components) * cost_per_mass
 
 # Penalty Calculation at time t
 def calculate_C_penalty(capacity, demand, t, alpha_penalty = 0):

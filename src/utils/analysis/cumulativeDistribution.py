@@ -56,8 +56,12 @@ def main_tree(probabilities = [[1/3, 1/3, 1/3], [0.7, 0.2, 0.1, 0.1, 0.8, 0.1, 0
         dark_color = [colors["dark_purple"], colors["dark_blue"]]
         legend = [legend[i] for i in [best_inflex[0], best_flex[0]]]
         legend = ['Robust', 'Flexible']
+    left = float('inf')
+    right = float('-inf')
     for i, data in enumerate(all_data):
         values = [x[0] for x in data]
+        left = min(left, values[0] - 0.5)
+        right = max(right, values[-1] + 0.5)
         probabilities = [x[1] for x in data]
         mean[i].append(np.dot(values, probabilities))
         cumulative_probabilities = []
@@ -76,7 +80,7 @@ def main_tree(probabilities = [[1/3, 1/3, 1/3], [0.7, 0.2, 0.1, 0.1, 0.8, 0.1, 0
         plt.xlabel('LCOE (Levelised Cost of Electricity) [$/kWh]')
         plt.ylabel('Cumulative Probability')
         plt.ylim(0, 1)
-        plt.xlim(left = 50)
+        plt.xlim(left=left, right=right)
         plt.xticks(list(plt.xticks()[0]), rotation=45)
         custom_lines = [Line2D([0], [0], color=c, lw=4) for c in color]
         plt.legend(custom_lines, legend, loc = 'lower right')
