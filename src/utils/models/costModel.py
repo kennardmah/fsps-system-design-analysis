@@ -99,4 +99,4 @@ def E_total(capacity_over_time, demand_scenarios):
     return res
 
 if __name__ == '__main__':
-    main(simulation=True)
+    main(simulation=False)

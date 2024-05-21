@@ -90,3 +90,6 @@ def main(first_prob = [1/3, 1/3, 1/3]):
     with open(output_filename, 'w', newline='') as file:
         writer = csv.writer(file)
         writer.writerows(expected_LCOE)
+
+if __name__ == "__main__":
+    main()

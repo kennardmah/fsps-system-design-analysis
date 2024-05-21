@@ -14,9 +14,7 @@ import expectedPayoff as ep
 import cumulativeDistribution as cd
 import numpy as np
 
-def main(simulation=False, plot=True):
-    alpha_penalty = [1 * 20 * 365 * 24]
-    # alpha_penalty = [54750 * i for i in range(0, 33)]
+def main(simulation=False, plot=True, alpha_penalty = [1 * 20 * 365 * 24]):
     graph = []
     if simulation:
         dm.main(plot=plot)
@@ -29,7 +27,7 @@ def main(simulation=False, plot=True):
             graph.append([alpha, cd.main_tree(plot=plot, choose_best=False)])
     x_results, y_results = comparative_analysis(graph)
     intersect = find_intersections(x_results, y_results)
-    plot(x_results, y_results, intersect)
+    plot_graph(x_results, y_results, intersect)
 
 def find_intersections(x_values, y_values):
     for i in range(1, len(y_values)):
@@ -51,7 +49,7 @@ def comparative_analysis(graph):
     y_results = np.array(y_results)
     return x_results, y_results
 
-def plot(x_results, y_results, intersect):
+def plot_graph(x_results, y_results, intersect):
     plt.plot(x_results, y_results, color='0.3', linestyle='-')
     plt.grid(axis='y', zorder=3)
     plt.fill_between(x_results, y_results, 0, hatch = '//', edgecolor = colors["dark_green"], facecolor=colors["green"], zorder=2, label = 'Positive Difference')
@@ -68,7 +66,11 @@ def plot(x_results, y_results, intersect):
     plt.yticks([i for i in range(int(y_results[-1]-1), int(y_results[0])+2)])
     plt.legend()
     plt.show()
+    plt.savefig(f'src/utils/analysis/testing/figures/α_pen_sensitivity_analysis_{round(intersect*100)}.png')
 
 if __name__ == "__main__":
+    alpha_penalty = [54750 * i for i in range(0, 33)]
+    simulation = False
+    plot = True
     # main(simulation=False)
-    main(simulation=True)
+    main(simulation, plot, alpha_penalty)

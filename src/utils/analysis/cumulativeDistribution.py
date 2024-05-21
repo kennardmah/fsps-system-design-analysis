@@ -61,7 +61,7 @@ def main_tree(probabilities = [[1/3, 1/3, 1/3], [0.7, 0.2, 0.1, 0.1, 0.8, 0.1, 0
     for i, data in enumerate(all_data):
         values = [x[0] for x in data]
         left = min(left, values[0] - 0.5)
-        right = max(right, values[-1] + 0.5)
+        right = max(right, values[-1] + 1)
         probabilities = [x[1] for x in data]
         mean[i].append(np.dot(values, probabilities))
         cumulative_probabilities = []
@@ -75,12 +75,16 @@ def main_tree(probabilities = [[1/3, 1/3, 1/3], [0.7, 0.2, 0.1, 0.1, 0.8, 0.1, 0
                 plt.axvline(values[-1], linestyle='dashed', color=dark_color[i], linewidth=1)
                 plt.annotate(f'E[LCOE]', xy=(mean[i][1] + 0.3, 0.1), xycoords='data', ha='left', fontsize=10, weight = 'bold', color=color[i])
                 plt.annotate(f'= {mean[i][1]:.2f}', xy=(mean[i][1] + 0.3, 0.05), xycoords='data', ha='left', fontsize=10, weight = 'semibold', color=color[i])
+                plt.annotate(f'min[LCOE]', xy=(values[0] + 0.3, 0.85 - 0.1*i), xycoords='data', ha='left', fontsize=8, weight = 'bold', color=color[i])
+                plt.annotate(f'= {values[0]:.2f}', xy=(values[0] + 0.3, 0.8-0.1*i), xycoords='data', ha='left', fontsize=8, weight = 'semibold', color=color[i])
+                plt.annotate(f'max[LCOE]', xy=(values[-1] + 0.3, 0.85 - 0.1*i), xycoords='data', ha='left', fontsize=8, weight = 'bold', color=color[i])
+                plt.annotate(f'= {values[-1]:.2f}', xy=(values[-1] + 0.3, 0.8 - 0.1*i), xycoords='data', ha='left', fontsize=8, weight = 'semibold', color=color[i])
             plt.step([0] + values, [0] + cumulative_probabilities, color = color[i], linestyle = "-", where='post')
     if plot:
         plt.xlabel('LCOE (Levelised Cost of Electricity) [$/kWh]')
         plt.ylabel('Cumulative Probability')
         plt.ylim(0, 1)
-        plt.xlim(left=left, right=right)
+        plt.xlim(left=left)
         plt.xticks(list(plt.xticks()[0]), rotation=45)
         custom_lines = [Line2D([0], [0], color=c, lw=4) for c in color]
         plt.legend(custom_lines, legend, loc = 'lower right')
@@ -91,6 +95,7 @@ def main_tree(probabilities = [[1/3, 1/3, 1/3], [0.7, 0.2, 0.1, 0.1, 0.8, 0.1, 0
         for m, c in zip(mean, color):
             plt.axvline(m[1], linestyle='dashed', color=c)
         plt.show()
+        plt.savefig(f'src/utils/analysis/testing/figures/cdf_lcoe_{choose_best}_{right-0.5}.png')
     return mean
 
 def main_sim(plot = True):
@@ -127,11 +132,12 @@ def main_sim(plot = True):
         plt.ylabel('Cumulative Probability')
         plt.grid(axis='y', linewidth=0.5)
         plt.ylim(0, 1)
-        plt.xlim(left = min(sorted(row_values)[0] for row_values in values) - 0.5, right = max(sorted(row_values)[-1] for row_values in values) + 3.3)
+        plt.xlim(left = min(sorted(row_values)[0] for row_values in values) - 0.5, right = max(sorted(row_values)[-1] for row_values in values) + 5.3)
         for i in range(len(mean)):
             plt.axvline(mean[i][1], linestyle='dashed', color=color[i])
         plt.tight_layout()
         plt.show()
+        plt.savefig(f'src/utils/analysis/testing/figures/cdf_lcoe_sim_{round(mean[0][1])}{round(mean[1][1])}.png')
     return mean
 
 def process_simulation_outcomes():
