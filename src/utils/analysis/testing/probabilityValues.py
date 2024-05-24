@@ -15,22 +15,30 @@ import cumulativeDistribution as cd
 
 def main():
     probabilities = generate_prob_1()
+    total = []
     res = []
+    probabilities.sort(key=lambda x: x[0])
+    index = 0
+    cm.main(alpha=5*20*365*24)
     for prob in probabilities:
-        if prob[1] == 0.1:
-            cm.main(alpha=9.5*20*365*24)
-            ep.main(prob)
-            res.append([[prob[0], prob[2]], label_results((cd.main_tree([prob,calculate_prob_2(prob)], plot=False, choose_best=True)))])
+        if index != prob[0]*100:
+            index = prob[0]*100
+            total.append(res)
+            res = []
+        ep.main(prob)
+        res.append([[prob[1], prob[2]], label_results((cd.main_tree([prob,calculate_prob_2(prob)], plot=False, choose_best=False)))])
         res.sort(key=lambda x: x[1])
-    plot_results(res)
+    for res in total:
+        print(res)
+        plot_results(res)
 
 def generate_prob_1():
     probabilities = []
-    for x1 in range(0, 101):
+    for x1 in range(0, 11):
         for x2 in range(0, 101):
             for x3 in range(0, 101):
                 if x1 + x2 + x3 <= 100:
-                    probabilities.append([x1*0.01, x2*0.01, x3*0.01])
+                    probabilities.append([x1*0.1, x2*0.01, x3*0.01])
             # x1_value = x1
             # x2_value = x2
             # x3_value = 10 - x1_value - x2_value
@@ -58,21 +66,27 @@ def calculate_prob_2(prob): # bayes' theorem
     return res
 
 def label_results(mean): # mean = [['desc', val]]
-    if mean[0][1] < mean[1][1]:
-        return True
-    if mean[0][1] > mean[1][1]:
-        return False
+    max_desc = max(mean, key=lambda x: x[1])[0]
+    if max_desc == 'inflexible_50':
+        return colors["blue"]
+    if max_desc == 'inflexible_60':
+        return colors["dark_blue"]
+    if max_desc == 'flexible_40':
+        return colors["purple"]
+    if max_desc == 'flexible_30':
+        return colors["dark_purple"]
     
 def plot_results(res): # res = [[[x, y], 'desc']...]
     x = [item[0][0] for item in res]
     y = [item[0][1] for item in res]
     desc = [item[1] for item in res]
     
-    plt.scatter(x, y, c=desc, cmap='seismic')
-    plt.xlabel('x')
-    plt.ylabel('y')
-    plt.title('Graph')
-    plt.colorbar(label='Description')
+    plt.scatter(x, y, c=desc)
+    plt.xlim(0, 1)
+    plt.ylim(0, 1)
+    plt.tight_layout()
+    plt.xlabel('probability_mid')
+    plt.ylabel('probability_low')
     plt.show()
 
 if __name__ == "__main__":
