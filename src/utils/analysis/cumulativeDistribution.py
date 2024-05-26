@@ -27,12 +27,12 @@ def main_tree(probabilities = [[1/3, 1/3, 1/3], [0.7, 0.2, 0.1, 0.2, 0.6, 0.2, 0
     # backward induction
     for outcomes in expected_payoffs:
         legend.append(outcomes[0])
-        print(outcomes[0])
+        # print(outcomes[0])
         outcomes = list(map(float, outcomes[1:]))
         data = []
         for lcoe, prob in zip(outcomes, second_prob):
             data.append([lcoe, prob])
-        print(data)
+        # print(data)
         data.sort(key=lambda x: x[0])
         all_data.append(data)
     

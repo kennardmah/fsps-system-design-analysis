@@ -7,7 +7,7 @@ import csv
 costModel.py – calculate the cost at each time step and return the total cost
 """
 
-def main(alpha=175200, simulation=False):
+def main(alpha=876000, simulation=False, discount = 0.05):
     
     with open('src/utils/data/raw/implementation_methods.csv', 'r') as file:
         reader = csv.reader(file)
@@ -32,7 +32,7 @@ def main(alpha=175200, simulation=False):
         desc = implementation_method[0]
         implementation_method = list(map(float, implementation_method[1:]))
         capacity_over_time = list(map(float, capacity_over_time[1:]))
-        C_outcome = C_total(implementation_method, capacityModel.measure_mass(implementation_method), capacity_over_time, demand_scenarios, alpha)
+        C_outcome = C_total(implementation_method, capacityModel.measure_mass(implementation_method), capacity_over_time, demand_scenarios, alpha=alpha, discount=discount)
         E_outcome = E_total(capacity_over_time, demand_scenarios)
         LCOE = [c/e for c, e in zip(C_outcome, E_outcome)]
         res.append([desc] + LCOE)
@@ -65,12 +65,12 @@ def calculate_C_operational(M_nf, M_components, cost_per_mass = 2720):
     return (M_components) * cost_per_mass
 
 # Penalty Calculation at time t
-def calculate_C_penalty(capacity, demand, t, alpha_penalty = 0):
+def calculate_C_penalty(capacity, demand, t, alpha_penalty=876000):
     integral = max(0, demand[t]-capacity[t])
     return alpha_penalty * integral
 
 # Combined Cost Calculation
-def C_total(implementation_method, mass_over_time, capacity_over_time, demand_scenarios, alpha = 0):
+def C_total(implementation_method, mass_over_time, capacity_over_time, demand_scenarios, alpha = 0, discount = 0.05):
     cost_over_time = [0 for _ in range(21)]
     # add implementation cost
     for t, val in enumerate(implementation_method):
@@ -85,7 +85,7 @@ def C_total(implementation_method, mass_over_time, capacity_over_time, demand_sc
         for t in range(21):
             cost[t] += calculate_C_penalty(capacity_over_time, demand, t, alpha)
             # convert to discounted rate
-            cost[t] = discounted_value(cost[t], t)
+            cost[t] = discounted_value(cost[t], t, r_discount=discount)
         res.append(sum(cost))
     return res
 

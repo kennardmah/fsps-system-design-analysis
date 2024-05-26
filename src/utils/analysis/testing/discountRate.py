@@ -1,5 +1,5 @@
 """
-getting the E[LCOE] with different alpha_penalty values
+getting the E[LCOE] with different discount_rate values
 """
 
 import matplotlib.pyplot as plt
@@ -14,17 +14,14 @@ import expectedPayoff as ep
 import cumulativeDistribution as cd
 import numpy as np
 
-def main(simulation=False, plot=False, alpha_penalty = [5*20*365*24]):
+def main(simulation=False, plot=False, discount_rates=[0.05]):
     graph = []
     if simulation:
         dm.main(plot=plot)
-    for alpha in alpha_penalty:
-        cm.main(alpha, simulation)
+    for d in discount_rates:
+        cm.main(discount = d, simulation = simulation)
         ep.main()
-        if simulation:
-            graph.append([alpha, cd.main_sim(plot=plot)])
-        else: 
-            graph.append([alpha, cd.main_tree(plot=plot, choose_best=False)])
+        graph.append([d, cd.main_tree(plot=plot, choose_best=False)])
     x_results, y_results = comparative_analysis(graph)
     intersect = find_intersections(x_results, y_results)
     plot_graph(x_results, y_results, intersect)
@@ -39,12 +36,12 @@ def find_intersections(x_values, y_values):
             
 def comparative_analysis(graph):
     x_results, y_results = [], []
-    for alpha_val, values in graph:
+    for d, values in graph:
         if len(values) == 4:
             best_inflex, best_flex = min(values[0][1], values[1][1]), min(values[2][1], values[3][1])
         elif len(values) == 2:
             best_inflex, best_flex = values[1][1], values[0][1]
-        x_results.append(alpha_val/(20*365*24))
+        x_results.append(d)
         y_results.append(best_inflex - best_flex)
     y_results = np.array(y_results)
     return x_results, y_results
@@ -56,22 +53,21 @@ def plot_graph(x_results, y_results, intersect):
     if intersect: 
         plt.fill_between(x_results, y_results, 0, where = x_results > intersect, hatch = '//', edgecolor = colors["dark_red"], facecolor=colors["red"], zorder=2, label = 'Negative Difference')
         plt.axvline(x=intersect, color=colors["dark_grey"], linestyle='--')
-    plt.xlabel('Cost Penalty for Energy Shortage [$/kWh]')
+    plt.xlabel('Discount Rate (r_discount)')
     plt.ylabel('Expected Value of Flexibility [$/kWh]')
     plt.axhline(y=0, color='0', linestyle='-')
     plt.tight_layout() 
-    plt.ylim(y_results[-1], y_results[0])
-    plt.xlim(0, 10)
-    plt.xticks([i for i in range(0, 11)])
-    plt.yticks([i for i in range(int(y_results[-1]-1), int(y_results[0])+2)])
+    plt.ylim(0, 22)
+    plt.xlim(0, 0.5)
+    plt.xticks([i*0.1 for i in range(0, 11)])
+    # plt.yticks([i for i in range(int(y_results[-1]-1), int(y_results[0])+2)])
     plt.legend()
-    if intersect:
-        plt.savefig(f'src/utils/analysis/testing/figures/α_pen_sensitivity_analysis_{round(intersect*100)}.png')
+    plt.savefig(f'src/utils/analysis/testing/figures/discount_rate_sensitivity_analysis.png')
     plt.show()
 
 if __name__ == "__main__":
-    alpha_penalty = [54750 * i for i in range(0, 33)]
+    discount_rate = [0.01 * i for i in range(0, 101)]
+    print(discount_rate)
     simulation = False
     plot = False
-    # main(simulation=False)
-    main(simulation, plot, alpha_penalty)
+    main(simulation, plot, discount_rate)
