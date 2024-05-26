@@ -39,6 +39,10 @@ def main(first_prob = [1/3, 1/3, 1/3]):
     new_flexible_40['low']  += (flexible_40[0][7:])
     new_flexible_40['low']  += (flexible_40[1][7:])
     new_flexible_40['low']  += (flexible_40[2][7:])
+    # print for treeage
+    # print("flexible_40")
+    # print(new_flexible_40)
+    # print()
 
     # converting to expected lcoe * probability 2 (e.g., $41.55/kWh * 0.7)
     temp_1 = []
@@ -69,6 +73,10 @@ def main(first_prob = [1/3, 1/3, 1/3]):
     new_flexible_30['low']  += (flexible_30[0][7:])
     new_flexible_30['low']  += (flexible_30[1][7:])
     new_flexible_30['low']  += (flexible_30[2][7:])
+    # print for treeage 
+    # print("flexible_30")
+    # print(new_flexible_30)
+    # print()
 
     # converting to expected lcoe * probability 1
     temp_1 = []
