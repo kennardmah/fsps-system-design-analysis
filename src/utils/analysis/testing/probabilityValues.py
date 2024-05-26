@@ -13,13 +13,26 @@ sys.path.append('src/utils/analysis')
 import expectedPayoff as ep
 import cumulativeDistribution as cd
 
+def main_test():
+    probabilities = generate_prob_1()
+    total = []
+    res = []
+    probabilities.sort(key=lambda x: x[0])
+    cm.main(alpha=6*20*365*24)
+    for prob in probabilities:
+        ep.main(prob)
+        res.append([[prob[0], prob[1], prob[2]], label_results((cd.main_tree([prob,calculate_prob_2(prob)], plot=False, choose_best=False)))])
+        res.sort(key=lambda x: x[1])
+    for res in total:
+        plot_results_3d(res)
+
 def main():
     probabilities = generate_prob_1()
     total = []
     res = []
     probabilities.sort(key=lambda x: x[0])
     index = 0
-    cm.main(alpha=5*20*365*24)
+    cm.main(alpha=6*20*365*24)
     for prob in probabilities:
         if index != prob[0]*100:
             index = prob[0]*100
@@ -29,7 +42,7 @@ def main():
         res.append([[prob[1], prob[2]], label_results((cd.main_tree([prob,calculate_prob_2(prob)], plot=False, choose_best=False)))])
         res.sort(key=lambda x: x[1])
     for res in total:
-        print(res)
+        # print(res)
         plot_results(res)
 
 def generate_prob_1():
@@ -66,14 +79,14 @@ def calculate_prob_2(prob): # bayes' theorem
     return res
 
 def label_results(mean): # mean = [['desc', val]]
-    max_desc = max(mean, key=lambda x: x[1])[0]
-    if max_desc == 'inflexible_50':
-        return colors["blue"]
-    if max_desc == 'inflexible_60':
-        return colors["dark_blue"]
-    if max_desc == 'flexible_40':
+    min_desc = min(mean, key=lambda x: x[1])[0]
+    if min_desc == 'inflexible_50':
         return colors["purple"]
-    if max_desc == 'flexible_30':
+    if min_desc == 'inflexible_60':
+        return colors["dark_blue"]
+    if min_desc == 'flexible_40':
+        return colors["blue"]
+    if min_desc == 'flexible_30':
         return colors["dark_purple"]
     
 def plot_results(res): # res = [[[x, y], 'desc']...]
@@ -89,6 +102,21 @@ def plot_results(res): # res = [[[x, y], 'desc']...]
     plt.ylabel('probability_low')
     plt.show()
 
+def plot_results_3d(res): # res = [[[x, y, z], 'desc']...]
+    x = [item[0][0] for item in res]
+    y = [item[0][1] for item in res]
+    z = [item[0][2] for item in res]
+    desc = [item[1] for item in res]
+    
+    fig = plt.figure()
+    ax = fig.add_subplot(111, projection='3d')
+    ax.scatter(x, y, z, c=desc)
+    ax.set_xlabel('probability_high')
+    ax.set_ylabel('probability_mid')
+    ax.set_zlabel('probability_low')
+    plt.show()
+
 if __name__ == "__main__":
-    print(calculate_prob_2)
-    main()
+    # print(calculate_prob_2([0, 0, 0.1]))
+    main_test()
+    # main()
