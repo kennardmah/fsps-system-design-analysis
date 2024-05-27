@@ -15,16 +15,15 @@ import cumulativeDistribution as cd
 
 def main_test():
     probabilities = generate_prob_1()
-    total = []
+    print(probabilities)
     res = []
     probabilities.sort(key=lambda x: x[0])
-    cm.main(alpha=6*20*365*24)
+    cm.main(alpha=876000)
     for prob in probabilities:
         ep.main(prob)
         res.append([[prob[0], prob[1], prob[2]], label_results((cd.main_tree([prob,calculate_prob_2(prob)], plot=False, choose_best=False)))])
         res.sort(key=lambda x: x[1])
-    for res in total:
-        plot_results_3d(res)
+    plot_results_3d(res)
 
 def main():
     probabilities = generate_prob_1()
@@ -47,16 +46,17 @@ def main():
 
 def generate_prob_1():
     probabilities = []
-    for x1 in range(0, 11):
+    # for x1 in range(0, 11):
+    #     for x2 in range(0, 101):
+    #         x3 = 100 - x1*10 - x2
+    #         if x1*10 + x2 + x3 == 100 and x3 >= 0:
+    #             probabilities.append([x1*0.1, x2*0.01, x3*0.01])
+    for x1 in range(0, 101):
         for x2 in range(0, 101):
-            for x3 in range(0, 101):
-                if x1 + x2 + x3 <= 100:
-                    probabilities.append([x1*0.1, x2*0.01, x3*0.01])
-            # x1_value = x1
-            # x2_value = x2
-            # x3_value = 10 - x1_value - x2_value
-            # if x1_value + x2_value + x3_value == 10 and x3_value >= 0:
-            #     probabilities.append([round(x1_value*0.1, 1), round(x2_value*0.1, 1), round(x3_value*0.1, 1)])
+            x3 = 100 - x1 - x2
+            if x1 + x2 + x3 == 100 and x3 >= 0:
+                probabilities.append([x1*0.01, x2*0.01, x3*0.01])
+    print(probabilities)
     return probabilities
 
 def calculate_prob_2(prob): # bayes' theorem
@@ -83,11 +83,11 @@ def label_results(mean): # mean = [['desc', val]]
     if min_desc == 'inflexible_50':
         return colors["purple"]
     if min_desc == 'inflexible_60':
-        return colors["dark_blue"]
+        return colors["dark_purple"]
     if min_desc == 'flexible_40':
         return colors["blue"]
     if min_desc == 'flexible_30':
-        return colors["dark_purple"]
+        return colors["dark_blue"]
     
 def plot_results(res): # res = [[[x, y], 'desc']...]
     x = [item[0][0] for item in res]
@@ -107,13 +107,19 @@ def plot_results_3d(res): # res = [[[x, y, z], 'desc']...]
     y = [item[0][1] for item in res]
     z = [item[0][2] for item in res]
     desc = [item[1] for item in res]
-    
+    legend = {
+        colors["blue"]: "flexible_40",
+        colors["dark_blue"]: "flexible_30",
+        colors["purple"]: "inflexible_50"
+    }
     fig = plt.figure()
     ax = fig.add_subplot(111, projection='3d')
     ax.scatter(x, y, z, c=desc)
     ax.set_xlabel('probability_high')
     ax.set_ylabel('probability_mid')
     ax.set_zlabel('probability_low')
+    plt.legend(legend.keys(), legend.values(), loc='upper right')
+    plt.tight_layout()
     plt.show()
 
 if __name__ == "__main__":
