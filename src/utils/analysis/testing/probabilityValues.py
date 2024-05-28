@@ -118,7 +118,9 @@ def plot_results_3d(res): # res = [[[x, y, z], 'desc']...]
     ax.set_xlabel('probability_high')
     ax.set_ylabel('probability_mid')
     ax.set_zlabel('probability_low')
-    plt.legend(legend.keys(), legend.values(), loc='upper right')
+    plt.legend(handles=[plt.Line2D([0], [0], marker='o', color='w', markerfacecolor=colors["blue"], markersize=10, label='flexible_40'),
+                        plt.Line2D([0], [0], marker='o', color='w', markerfacecolor=colors["dark_blue"], markersize=10, label='flexible_30'),
+                        plt.Line2D([0], [0], marker='o', color='w', markerfacecolor=colors["purple"], markersize=10, label='inflexible_50')])
     plt.tight_layout()
     plt.show()
 
