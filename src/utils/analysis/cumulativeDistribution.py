@@ -45,7 +45,7 @@ def main_tree(probabilities = [[1/3, 1/3, 1/3], [0.7, 0.2, 0.1, 0.2, 0.6, 0.2, 0
     this part is for filtering to only show the best inflexible and flexible
     """
     if choose_best:
-        mean = [["robust"], ["flexible"]]
+        mean = [["inflex"], ["flexible"]]
         for i, data in enumerate(all_data):
             e_lcoe = np.dot([x[0] for x in data], [x[1] for x in data])
             if i < 2:
@@ -58,7 +58,7 @@ def main_tree(probabilities = [[1/3, 1/3, 1/3], [0.7, 0.2, 0.1, 0.2, 0.6, 0.2, 0
         color = [colors["purple"], colors["blue"]]
         dark_color = [colors["dark_purple"], colors["dark_blue"]]
         legend = [legend[i] for i in [best_inflex[0], best_flex[0]]]
-        legend = ['Robust', 'Flexible']
+        legend = ['Inflexible', 'Flexible']
     left = float('inf')
     right = float('-inf')
     for i, data in enumerate(all_data):
@@ -148,12 +148,12 @@ def process_simulation_outcomes():
     with open(filename, 'r') as file:
         reader = csv.reader(file)
         e_lcoe = [[row[0]] + list(map(float, row[1:])) for row in reader]
-    flexible, robust = ["flexible"], ["robust"]
+    flexible, inflex = ["flexible"], ["inflex"]
     for i in range(1, len(e_lcoe[0])):
         min_flex_30, min_flex_40 = min([row[i] for row in e_lcoe[2:5]]), min([row[i] for row in e_lcoe[5:7]])
         flexible.append(min(min_flex_30, min_flex_40))
-        robust.append(min([row[i] for row in e_lcoe[0:2]]))
-    e_lcoe = [flexible, robust]
+        inflex.append(min([row[i] for row in e_lcoe[0:2]]))
+    e_lcoe = [flexible, inflex]
     filename = "src/utils/data/processed/decision_tree_outcome_sim.csv"
     with open(filename, 'w', newline='') as file:
         writer = csv.writer(file)

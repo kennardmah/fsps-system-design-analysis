@@ -67,7 +67,7 @@ def plot_graph(x_results, y_results, intersect):
 
 if __name__ == "__main__":
     discount_rate = [0.01 * i for i in range(0, 101)]
-    print(discount_rate)
+    # print(discount_rate)
     simulation = False
     plot = False
     main(simulation, plot, discount_rate)

@@ -53,9 +53,9 @@ def capacity_model(initial_kW, expansion_kW):
 # testing
 if __name__ == '__main__':
     table_data = []
-    for robust_capacity in [50, 60]:
-        robust = nuclear_capacity_time(robust_capacity)
-        table_data.append([f"inflexible_{robust_capacity}"] + robust)
+    for inflex_capacity in [50, 60]:
+        inflex = nuclear_capacity_time(inflex_capacity)
+        table_data.append([f"inflexible_{inflex_capacity}"] + inflex)
 
     for flexible_capacity in [30, 40]:
         for add in [0, 10, 20]:
