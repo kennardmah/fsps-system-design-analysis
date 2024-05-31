@@ -28,6 +28,7 @@ def main(simulation=False, plot=False, alpha_penalty = [5*20*365*24]):
     x_results, y_results = comparative_analysis(graph)
     intersect = find_intersections(x_results, y_results)
     plot_graph(x_results, y_results, intersect)
+    return x_results, y_results # cost penalty / expected value of flex.
 
 def find_intersections(x_values, y_values):
     for i in range(1, len(y_values)):
