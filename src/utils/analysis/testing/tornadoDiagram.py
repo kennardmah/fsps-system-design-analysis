@@ -38,14 +38,59 @@ a_change = [base_val_a - min_a, max_a - base_val_a]
 variables = ['Discount Rate (r)', 'Alpha Penalty (a)']
 changes = [r_change, a_change]
 
-# Plotting the tornado diagram
-fig, ax = plt.subplots(figsize=(10, 6))
+# Tornado Diagram
+def tornado():
+    fig, ax1 = plt.subplots(figsize=(4, 5))
+    bars = ax1.barh(variables[0], r_change[1], left=base_val_r, color=colors['green'], height=0.4)
+    ax1.barh(variables[0], -r_change[0], left=base_val_r, color=colors['red'], height=0.4)
+    bars = ax1.barh(variables[1], a_change[1], left=base_val_a, color=colors['red'], height=0.4)
+    ax1.barh(variables[1], -a_change[0], left=base_val_a, color=colors['green'], height=0.4)
+    for base_value in [base_val_r, base_val_a]:
+        ax1.axvline(x=base_value, color='black', linestyle='-', linewidth=2)
+    ax1.xaxis.set_major_locator(plt.MultipleLocator(2))
+    ax1.grid(axis='x', which='both', color='gray', linestyle='--', linewidth=0.5)
+    ax1.set_yticklabels(variables, rotation=90, ha='right')
+    ax1.xaxis.set_label_position('bottom')
+    ax1.xaxis.tick_top()
+    ax1.set_xlabel('Expected Value of Flexibility', fontsize=10)
+    ax1.set_title('')
+    plt.show()
 
-# Plot each bar for the changes in both directions
-bars = ax.barh(variables, [r_change[1], a_change[1]], left=[base_val_r, base_val_a], color=colors['green'])
-ax.barh(variables, [-r_change[0], -a_change[0]], left=[base_val_r, base_val_a], color=colors['red'])
+def case_boundaries():
+    # Define the data
+    variables = ['a', 'r']
+    positions = [0, 1]
 
-ax.set_xlabel('Expected Value of Flexibility')
-plt.legend(loc='upper right')
-plt.grid(axis='x')
-plt.show()
+    # Create the figure and axis
+    fig, ax = plt.subplots(figsize=(6, 8))
+
+    bars = ax.barh(0, -1, left=0, color=colors['red'], height=0.4)
+    ax.barh(0, 1, left=0, color=colors['green'], height=0.4)
+    bars = ax.barh(1, -1, left=0, color=colors['red'], height=0.4)
+    ax.barh(1, 1, left=0, color=colors['green'], height=0.4)
+    ax.axvline(x=-1, color='gray', linestyle='--')
+    ax.axvline(x=0, color='gray', linestyle='--')
+    ax.axvline(x=1, color='gray', linestyle='--')
+    ax.set_xticks([-1, 0, 1])
+    ax.set_xticklabels(['low', 'base', 'high'], fontsize=14)
+    ax.set_yticks(positions)
+    ax.yaxis.set_ticks_position('none')
+    ax.set_xlabel('Case Boundaries', fontsize=16)
+    ax.xaxis.set_label_position('bottom')
+    ax.xaxis.tick_top()
+    ax.spines['right'].set_visible(False)
+    ax.spines['top'].set_visible(False)
+    ax.yaxis.set_ticks_position('none')
+
+    ax.text(-1, 0, '0.00', ha='center', va='center', fontsize=20, bbox=dict(facecolor='white', edgecolor='black'))
+    ax.text(0, 0, '0.05', ha='center', va='center', fontsize=20, bbox=dict(facecolor='white', edgecolor='black'))
+    ax.text(1, 0, '1.00', ha='center', va='center', fontsize=20, bbox=dict(facecolor='white', edgecolor='black'))
+
+    ax.text(-1, 1, '0', ha='center', va='center', fontsize=20, bbox=dict(facecolor='white', edgecolor='black'))
+    ax.text(0, 1, '5', ha='center', va='center', fontsize=20, bbox=dict(facecolor='white', edgecolor='black'))
+    ax.text(1, 1, '10', ha='center', va='center', fontsize=20, bbox=dict(facecolor='white', edgecolor='black'))
+    
+    plt.tight_layout()
+    plt.show()
+
+case_boundaries()
