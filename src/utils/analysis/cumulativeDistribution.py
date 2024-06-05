@@ -37,7 +37,7 @@ def main_tree(probabilities = [[1/3, 1/3, 1/3], [0.7, 0.2, 0.1, 0.2, 0.6, 0.2, 0
         all_data.append(data)
     
     # color/labels for plotting
-    color = [colors["blue"], colors["dark_blue"], colors["purple"], colors["dark_purple"]]
+    color = [colors["blue"], colors["dark_blue"], colors["purple"], "orange"]
     mean = [["inflexible_50"], ["inflexible_60"], ["flexible_40"], ["flexible_30"]]
     best_flex, best_inflex = ['type', float('inf')], ['type', float('inf')]
 
@@ -76,8 +76,8 @@ def main_tree(probabilities = [[1/3, 1/3, 1/3], [0.7, 0.2, 0.1, 0.2, 0.6, 0.2, 0
             if choose_best:
                 plt.axvline(values[0], linestyle='dashed', color=dark_color[i], linewidth=1)
                 plt.axvline(values[-1], linestyle='dashed', color=dark_color[i], linewidth=1)
-                plt.annotate(f'E[LCOE]', xy=(mean[i][1] + 0.3, 0.1), xycoords='data', ha='left', fontsize=10, weight = 'bold', color=color[i])
-                plt.annotate(f'= {mean[i][1]:.2f}', xy=(mean[i][1] + 0.3, 0.05), xycoords='data', ha='left', fontsize=10, weight = 'semibold', color=color[i])
+                plt.annotate(f'E[LCOE]', xy=(mean[i][1] + 0.3, 0.1*(i+1)), xycoords='data', ha='left', fontsize=10, weight = 'bold', color=color[i])
+                plt.annotate(f'= {mean[i][1]:.2f}', xy=(mean[i][1] + 0.3, 0.05 +0.1*i), xycoords='data', ha='left', fontsize=10, weight = 'semibold', color=color[i])
                 plt.annotate(f'min[LCOE]', xy=(values[0] + 0.3, 0.85 - 0.1*i), xycoords='data', ha='left', fontsize=8, weight = 'bold', color=color[i])
                 plt.annotate(f'= {values[0]:.2f}', xy=(values[0] + 0.3, 0.8-0.1*i), xycoords='data', ha='left', fontsize=8, weight = 'semibold', color=color[i])
                 plt.annotate(f'max[LCOE]', xy=(values[-1] + 0.3, 0.85 - 0.1*i), xycoords='data', ha='left', fontsize=8, weight = 'bold', color=color[i])

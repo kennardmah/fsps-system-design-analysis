@@ -30,7 +30,7 @@ def main():
     probabilities = generate_prob_1()
     res = []
     probabilities.sort(key=lambda x: x[0])
-    cm.main(alpha=6*20*365*24)
+    cm.main(alpha=5*20*365*24)
     for prob in probabilities:
         if prob[1] == 0.33:
             ep.main(prob)
@@ -91,11 +91,11 @@ def plot_results(res): # res = [[[x, y], 'desc']...]
     desc = [item[1] for item in res]
     plt.figure(figsize=(4, 4))
     plt.grid(True)
+    # red = 0.20, orange = 0.33, yellow = 0.50
+    plt.gca().add_patch(plt.Rectangle((0, 0), 1, 1, color='orange', alpha=0.2))
     plt.scatter(x, y, c=desc)
     plt.xlim(0, 1)
     plt.ylim(0, 1)
-    # plt.tight_layout()
-    plt.gca().add_patch(plt.Rectangle((0, 0), 1, 1, color='yellow', alpha=0.2))
     plt.subplots_adjust(left=0.20, right=0.95, top=0.9, bottom=0.15)
     plt.text(1.02, 1.1, 'probability for central expected demand = 0.33',
              horizontalalignment='right', verticalalignment='top', transform=plt.gca().transAxes)
@@ -116,12 +116,12 @@ def plot_results_3d(res): # res = [[[x, y, z], 'desc']...]
     ax.set_ylabel('probability for central expected demand')
     ax.set_zlabel('probability for low expected demand')
 
-            # Add planes at y = 0.00, 0.20, 0.33
+    # Add planes at y = 0.00, 0.20, 0.33
     xx, zz = np.meshgrid(np.linspace(0, 1, 10), np.linspace(0, 1, 10))
     
-    ax.plot_surface(xx, np.full_like(xx, 0.00), zz, alpha=0.3, color='red')
-    ax.plot_surface(xx, np.full_like(xx, 0.20), zz, alpha=0.3, color='orange')
-    ax.plot_surface(xx, np.full_like(xx, 0.33), zz, alpha=0.3, color='yellow')
+    ax.plot_surface(xx, np.full_like(xx, 0.50), zz, alpha=0.3, color='yellow')
+    ax.plot_surface(xx, np.full_like(xx, 0.33), zz, alpha=0.3, color='orange')
+    ax.plot_surface(xx, np.full_like(xx, 0.20), zz, alpha=0.3, color='red')
 
     plt.legend(handles=[plt.Line2D([0], [0], marker='o', color='w', markerfacecolor=colors["blue"], markersize=10, label='flexible_40'),
                         plt.Line2D([0], [0], marker='o', color='w', markerfacecolor=colors["dark_blue"], markersize=10, label='flexible_30'),
@@ -131,5 +131,5 @@ def plot_results_3d(res): # res = [[[x, y, z], 'desc']...]
 
 if __name__ == "__main__":
     # print(calculate_prob_2([0, 0.3, 0.7]))
-    # main_test()
+    main_test()
     main()
