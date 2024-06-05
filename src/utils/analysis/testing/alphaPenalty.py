@@ -22,9 +22,9 @@ def main(simulation=False, plot=False, alpha_penalty = [5*20*365*24]):
         cm.main(alpha, simulation)
         ep.main()
         if simulation:
-            graph.append([alpha, cd.main_sim(plot=plot)])
+            graph.append([alpha, cd.main_sim(plot=plot)[0]])
         else: 
-            graph.append([alpha, cd.main_tree(plot=plot, choose_best=False)])
+            graph.append([alpha, cd.main_tree(plot=plot, choose_best=False)[0]])
     x_results, y_results = comparative_analysis(graph)
     intersect = find_intersections(x_results, y_results)
     print(intersect)

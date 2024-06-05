@@ -21,7 +21,7 @@ def main(simulation=False, plot=False, discount_rates=[0.05]):
     for d in discount_rates:
         cm.main(discount = d, simulation = simulation)
         ep.main()
-        graph.append([d, cd.main_tree(plot=plot, choose_best=False)])
+        graph.append([d, cd.main_tree(plot=plot, choose_best=False)[0]])
     x_results, y_results = comparative_analysis(graph)
     intersect = find_intersections(x_results, y_results)
     plot_graph(x_results, y_results, intersect)

@@ -1,9 +1,16 @@
 """
-probabilityValues.py - sensitivity analysis
+probabilityValues.py
+
+Sensitivity Analysis of Different Prior Probabilities (Section 5.2)
+
+This file contains functions to:
+    1) Calculate the posterior probability of the chance outcomes based on
+    Bayes' Theorem and EVSI-Transition Matrix
+    2) Run the analysis with different prior probability values
+    3) Graph the 2D & 3D diagram to visualise trends
 """
 
 import matplotlib.pyplot as plt
-# from mpl_toolkits.mplot3d import Axes3D
 import numpy as np
 import sys
 sys.path.append('tools')
@@ -22,7 +29,7 @@ def main_test():
     cm.main(alpha=876000)
     for prob in probabilities:
         ep.main(prob)
-        res.append([[prob[0], prob[1], prob[2]], label_results((cd.main_tree([prob,calculate_prob_2(prob)], plot=False, choose_best=False)))])
+        res.append([[prob[0], prob[1], prob[2]], label_results((cd.main_tree([prob,calculate_prob_2(prob)], plot=False, choose_best=False))[0])])
         res.sort(key=lambda x: x[1])
     plot_results_3d(res)
 
@@ -34,7 +41,7 @@ def main():
     for prob in probabilities:
         if prob[1] == 0.33:
             ep.main(prob)
-            res.append([[prob[0], prob[2]], label_results((cd.main_tree([prob,calculate_prob_2(prob)], plot=False, choose_best=False)))])
+            res.append([[prob[0], prob[2]], label_results((cd.main_tree([prob,calculate_prob_2(prob)], plot=False, choose_best=False))[0])])
             res.sort(key=lambda x: x[1])
     # for res in total:
     print(res)
@@ -42,11 +49,6 @@ def main():
 
 def generate_prob_1():
     probabilities = []
-    # for x1 in range(0, 11):
-    #     for x2 in range(0, 101):
-    #         x3 = 100 - x1*10 - x2
-    #         if x1*10 + x2 + x3 == 100 and x3 >= 0:
-    #             probabilities.append([x1*0.1, x2*0.01, x3*0.01])
     for x1 in range(0, 101):
         for x2 in range(0, 101):
             x3 = 100 - x1 - x2
@@ -55,7 +57,7 @@ def generate_prob_1():
     print(probabilities)
     return probabilities
 
-def calculate_prob_2(prob): # bayes' theorem
+def calculate_prob_2(prob): # Bayes' Theorem
     EVSI = np.array([
         [0.7, 0.2, 0.1],
         [0.2, 0.6, 0.2],

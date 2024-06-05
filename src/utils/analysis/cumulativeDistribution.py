@@ -99,7 +99,7 @@ def main_tree(probabilities = [[1/3, 1/3, 1/3], [0.7, 0.2, 0.1, 0.2, 0.6, 0.2, 0
             plt.axvline(m[1], linestyle='dashed', color=c)
         plt.savefig(f'src/utils/analysis/testing/figures/cdf_lcoe_{choose_best}_{right-0.5}.png')
         plt.show()
-    return mean
+    return mean, all_data
 
 def main_sim(plot = True):
     process_simulation_outcomes()
@@ -143,6 +143,16 @@ def main_sim(plot = True):
         plt.show()
     return mean
 
+def get_var(all_data):
+    variances = []
+    for data in all_data:
+        values = np.array([x[0] for x in data])
+        probabilities = np.array([x[1] for x in data])
+        mean = np.dot(values, probabilities)
+        variance = np.dot(probabilities, (values - mean) ** 2)
+        variances.append(variance)
+    return variances
+
 def process_simulation_outcomes():
     filename = "src/utils/data/raw/decision_tree_outcome_sim.csv"
     with open(filename, 'r') as file:
@@ -163,5 +173,8 @@ def process_simulation_outcomes():
 # testing
 if __name__ == "__main__":
     # main_tree(plot=True, choose_best = False)
-    print(main_tree(plot=True, choose_best = True))
-    main_sim()
+    means, all_data = main_tree(plot=True, choose_best = True)
+    variances = get_var(all_data)
+    print("Means:", means)
+    print("Variances:", variances)
+    # main_sim()
