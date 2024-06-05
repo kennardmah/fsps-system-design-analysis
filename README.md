@@ -10,8 +10,6 @@ This repository contains the code and data for the Master's thesis project title
 - [Methodology](#methodology)
 - [Case Application](#case-application)
 - [Results and Discussion](#results-and-discussion)
-- [Conclusion](#conclusion)
-- [Future Work](#future-work)
 - [Acknowledgements](#acknowledgements)
 
 ## Introduction 🌍
