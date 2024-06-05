@@ -19,7 +19,8 @@ The project aims to develop a sustainable energy solution for a lunar outpost us
 
 ## Repository Structure 🗂️
 The repository is structured as follows:
-\`\`\`
+
+```
 FSPS-System-Design-Analysis/
 ├── src/
 │   ├── utils/
@@ -42,7 +43,7 @@ FSPS-System-Design-Analysis/
 ├── tools/
 │   └── design.py
 ├── README.md
-\`\`\`
+```
 
 
 ## Installation 💻
