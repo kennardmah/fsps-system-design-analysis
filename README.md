@@ -19,29 +19,30 @@ The project aims to develop a sustainable energy solution for a lunar outpost us
 
 ## Repository Structure 🗂️
 The repository is structured as follows:
-
+\`\`\`
 FSPS-System-Design-Analysis/
 ├── src/
-│ ├── utils/
-│ │ ├── analysis/
-│ │ │ ├── cumulativeDistribution.py
-│ │ │ ├── expectedPayoff.py
-│ │ │ └── tornadoDiagram.py
-│ │ ├── data/
-│ │ │ ├── processed/
-│ │ │ │ └── decision_tree_optimal_path.csv
-│ │ │ ├── raw/
-│ │ │ │ ├── capacity_over_time.csv
-│ │ │ │ ├── decision_tree_outcome.csv
-│ │ │ │ └── implementation_methods.csv
-│ │ ├── models/
-│ │ │ ├── capacityModel.py
-│ │ │ ├── costModel.py
-│ │ │ └── demandModel.py
-│ ├── main.py
+│   ├── utils/
+│   │   ├── analysis/
+│   │   │   ├── cumulativeDistribution.py
+│   │   │   ├── expectedPayoff.py
+│   │   │   └── tornadoDiagram.py
+│   │   ├── data/
+│   │   │   ├── processed/
+│   │   │   │   └── decision_tree_optimal_path.csv
+│   │   │   ├── raw/
+│   │   │   │   ├── capacity_over_time.csv
+│   │   │   │   ├── decision_tree_outcome.csv
+│   │   │   │   └── implementation_methods.csv
+│   │   ├── models/
+│   │   │   ├── capacityModel.py
+│   │   │   ├── costModel.py
+│   │   │   └── demandModel.py
+│   ├── main.py
 ├── tools/
-│ └── design.py
+│   └── design.py
 ├── README.md
+\`\`\`
 
 
 ## Installation 💻
