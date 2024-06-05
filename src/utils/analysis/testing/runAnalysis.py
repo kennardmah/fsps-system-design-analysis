@@ -1,3 +1,14 @@
+"""
+runAnalysis.py
+
+Main script to run the analysis and generate CDF (Section 5.1)
+
+This file contains functions to:
+    1) main_tree: Runs the model using a decision tree approach with varying alpha_penalty values, generates CDF plots, and allows for choosing the best options based on expected payoffs.
+    2) main_sim: Runs the simulation model with varying alpha_penalty values, processes demand and cost models, and generates CDF plots.
+    3) main: Executes the main_tree and main_sim functions with default or specified parameters, integrating demand and cost models, and producing cumulative distribution results.
+"""
+
 import sys
 sys.path.append('src/utils/models')
 import costModel as cm

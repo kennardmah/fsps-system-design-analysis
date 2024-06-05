@@ -1,5 +1,13 @@
 """
-getting the E[LCOE] with different alpha_penalty values
+alphaPenalty.py
+
+Getting the E[LCOE] with different alpha_penalty values (Section 5.2)
+
+This file contains functions to:
+    1) main: Executes the main analysis by iterating over different alpha_penalty values, performing simulations or tree-based evaluations, and plotting results.
+    2) find_intersections: Finds the x-value where the y-value crosses zero, indicating a change in sign.
+    3) comparative_analysis: Analyzes and compares the results of the simulations or tree evaluations, identifying the best flexible and inflexible options.
+    4) plot_graph: Plots the results of the comparative analysis, highlighting the regions where flexibility provides a positive or negative difference.
 """
 
 import matplotlib.pyplot as plt

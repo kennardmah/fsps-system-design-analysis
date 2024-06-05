@@ -1,10 +1,14 @@
-### what do I need
+"""
+tornadoDiagram.py
 
-# case boundaries legend
+Sensitivity analysis for alpha_penalty and r_discount (Section 5.2)
 
-# E[V_flex] = LCOE[inflex] - LCOE[flex]
+This file contains functions to:
+    1) tornado: Graphs the outcomes of the sensitivity analysis for varying alpha_penalty and discount rates using a tornado diagram.
+    2) case_boundaries: Plots the case boundaries for the sensitivity analysis of alpha_penalty and discount rates.
+    3) main: Runs the sensitivity analysis for varying penalty constants and discount rates, and graphs the outcomes.
+"""
 
-import numpy as np
 import matplotlib.pyplot as plt
 import discountRate
 import alphaPenalty

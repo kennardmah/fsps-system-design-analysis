@@ -1,6 +1,15 @@
 """
-getting the E[LCOE] with different discount_rate values
+discountRate.py
+
+Getting the E[LCOE] with different discount_rate values (Section 5.2)
+
+This file contains functions to:
+    1) main: Runs the model with varying discount rates, performs simulations or tree-based evaluations, and plots the results to analyze the expected value of flexibility.
+    2) find_intersections: Identifies the x-value where the y-value crosses zero, indicating a change in sign using linear interpolation.
+    3) comparative_analysis: Compares the results of the simulations or tree evaluations, identifying the best flexible and inflexible options and calculating their differences.
+    4) plot_graph: Plots the results of the comparative analysis, highlighting regions where flexibility provides positive or negative differences in expected values.
 """
+
 
 import matplotlib.pyplot as plt
 import sys

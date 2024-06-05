@@ -1,14 +1,21 @@
-import pandas as pd
-import csv
-
-'''
+"""
 capacityModel.py
-- the purpose of this model is to return a list for how much energy is produced every year
-- the model will be based on a decay rate of 1.59% per year (r_decay) that can be adjusted
-- the model will also have a function to add capacity at a certain time (t = 10)
-- import capacityModel and use function capacity_model for all in one function.
-'''
 
+- The purpose of this model is to return a list for how much energy is produced every year.
+- The model is based on a decay rate of 1.59% per year (r_decay) that can be adjusted.
+- The model includes a function to add capacity at a certain time (t = 10).
+- The script imports capacityModel and uses the function capacity_model for all-in-one functionality.
+
+This file contains functions to:
+    1) nuclear_capacity: Calculate the remaining nuclear capacity after a certain number of years considering decay.
+    2) nuclear_capacity_time: Generate a list of nuclear capacity over a specified period considering decay.
+    3) add_capacity: Add additional capacity at a specified time to the existing capacity over time.
+    4) measure_mass: Calculate the mass of nuclear fuel and components based on the implementation method over time.
+    5) plot_energy_capacity: Plot the nuclear capacity over time.
+    6) capacity_model: Combine initial capacity and expansion capacity into a single model.
+"""
+
+import csv
 import matplotlib.pyplot as plt
 
 def nuclear_capacity(kW, time, r_decay=0.0159):

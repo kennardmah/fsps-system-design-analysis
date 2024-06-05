@@ -1,6 +1,16 @@
 """
+expectedPayoff.py
+
 Read the "decision_tree_outcome.csv" file and calculate the expected payoff for each implementation method.
+
+This file contains functions to:
+    1) main: Reads the decision tree outcomes from a CSV file, processes flexible implementation methods, and calculates the expected LCOE for each method.
+    2) combine_flexible_methods: Combines flexible implementation methods with the same initial capacity.
+    3) analyse_flexible_40: Analyzes and calculates the expected LCOE for flexible_40 methods.
+    4) analyse_flexible_30: Analyzes and calculates the expected LCOE for flexible_30 methods.
+    5) save_expected_LCOE: Saves the calculated expected LCOE values to a CSV file.
 """
+
 import csv
 from collections import defaultdict
 

@@ -1,44 +1,52 @@
-Citation
+Abdin, A. F., Caunhye, A., Zio, E., & Cardin, M.-A. (2022). Optimizing generation expansion planning with operational uncertainty: A multistage adaptive robust approach. Applied Energy, 306, 118032. https://doi.org/10.1016/j.apenergy.2021.118032
+Anderson, G., & Wittry, J. (2018, May 2). Demonstration Proves Nuclear Fission System Can Provide Space Exploration Power—NASA. https://www.nasa.gov/news-release/demonstration-proves-nuclear-fission-system-can-provide-space-exploration-power/
+Baker, H. (2024, March 12). Russia and China announced plan to build shared nuclear reactor on the moon by 2035, “without humans.” Space.Com. https://www.space.com/russia-china-shared-nuclear-reactor-2035-moon
+Barrey, R., Campbell, D., Adams, L., Roberts, T., Abrahamson, E., & Lake, M. S. (2006). Development of a Passively Deployed Roll-Out Solar Array. Report No. ADA463695. https://apps.dtic.mil/sti/tr/pdf/ADA463695.pdf
+Barth, C., Pike, D., & Oleson, S. (2022). IAPG Fission Surface Power (FSP) Project update. NASA Glenn Research Center, Cleveland, OH , 44135.
+Benallal, A., Cheggaga, N., Ilinca, A., Tchoketch-Kebir, S., Ait Hammouda, C., & Barka, N. (2024). Bayesian Inference-Based Energy Management Strategy for Techno-Economic Optimization of a Hybrid Microgrid. Energies, 17(1), Article 1. https://doi.org/10.3390/en17010114
+Bernstein, D. H., Parmeter, C. F., & Tsionas, M. G. (2023). On the performance of the United States nuclear power sector: A Bayesian approach. Energy Economics, 125, 106884. https://doi.org/10.1016/j.eneco.2023.106884
+Boomsma, T. K., Meade, N., & Fleten, S.-E. (2012). Renewable energy investments under different support schemes: A real options approach. European Journal of Operational Research, 220(1), 225–237.
+Bosomworth, S., & Grogan, P. T. (2021). Effects of Staged Deployment on the Economics of Global Broadband Internet Satellite Constellations. Engineering Archive. https://doi.org/10.31224/osf.io/svnt2
+Bowman, A. (2024, February 13). Fission Surface Power—NASA. https://www.nasa.gov/tdm/fission-surface-power/
+Cardin, M.-A. (2013). Enabling Flexibility in Engineering Systems: A Taxonomy of Procedures and a Design Framework. Journal of Mechanical Design, 136(011005). https://doi.org/10.1115/1.4025704
+Cardin, M.-A., Steer, S. J., Nuttall, W. J., Parks, G. T., Gonçalves, L. V. N., & de Neufville, R. (2012). Minimizing the economic cost and risk to Accelerator-Driven Subcritical Reactor technology. Part 2: The case of designing for flexibility. Nuclear Engineering and Design, 243, 120–134. https://doi.org/10.1016/j.nucengdes.2011.11.026
+Cetinkaya, E., & Thiele, A. (2014). Real Options: A Survey.
+Chib, S., & Greenberg, E. (1998). Analysis of Multivariate Probit Models. Biometrika, 85(2), 347–361.
+Colozza, A. J. (2020). Small Lunar Base Camp and in Situ Resource Utilization Oxygen Production Facility Power System Comparison (E-19754). https://ntrs.nasa.gov/citations/20200001622
+Csank, J., & Scott, J. H. (2022, April 29). Power and Energy for the Lunar Surface. https://ntrs.nasa.gov/citations/20220005893
+Daehnick, C., Gang, J., & Rozenkopf, Ii. (2023, April 17). Space launch: An oversupply or a shortfall? | McKinsey. https://www.mckinsey.com/industries/aerospace-and-defense/our-insights/space-launch-are-we-heading-for-oversupply-or-a-shortfall
+Demirović, E., Lukina, A., Hebrard, E., Chan, J., Bailey, J., Leckie, C., Ramamohanarao, K., & Stuckey, P. J. (2022). MurTree: Optimal Decision Trees via Dynamic Programming and Search. Ar5iv. https://ar5iv.labs.arxiv.org/html/2007.12652
+Dezfuli, H., Kelly, D., Smith, C., Vedros, K., & Galyean, W. (2009). Bayesian Inference for NASA Probabilistic Risk and Reliability Analysis. https://ntrs.nasa.gov/citations/20090023159
+FAA. (2018). The Annual Compendium of Commercial Space Transportation: 2018. Federal Aviation Administration.
+Godsill, S. J. (2001). On the Relationship Between Markov chain Monte Carlo Methods for Model Uncertainty. Journal of Computational and Graphical Statistics, 10(2), 230–248. https://doi.org/10.1198/10618600152627924
+Gray, A. A., Arabshahi, P., Lamassoure, E., Okino, C., & Andringa, J. (2005). A real options framework for space mission design. 2005 IEEE Aerospace Conference, 137–146. https://doi.org/10.1109/AERO.2005.1559307
+Guzik, M. C., Gilligan, R. P., Smith, P. J., & Jakupca, I. J. (2018, September 17). Energy Storage for Lunar Surface Exploration. AIAA Space and Astronautics Forum (SPACE Forum 2018), Orlando, FL. https://ntrs.nasa.gov/citations/20190000472
+Hanford, A. J. (2004). Advanced Life Support Research and Technology Development Metric (S-940). https://ntrs.nasa.gov/citations/20040139875
+Janoiko, B., Reagan, M., Everett, S., Beaton, K., Litaker, H., & Poffenberger, J. (2023, December 8). Desert Research and Technology Studies (D-RATS) 2022 Test Report. https://ntrs.nasa.gov/citations/20230017073
+Jones, H. W. (2018, July 8). The Recent Large Reduction in Space Launch Cost. International Conference on Environmental Systems (ICES), Albuquerque, NM. https://ntrs.nasa.gov/citations/20200001093
+Kaczmarzyk, M., & Musiał, M. (2021). Parametric Study of a Lunar Base Power Systems. Energies, 14(4), Article 4. https://doi.org/10.3390/en14041141
+Landis, G. A. (1989). Solar power for the lunar night. NTRS - NASA Technical Reports Server. https://ntrs.nasa.gov/citations/19890017428
+Landis, G. A., Bailey, S. G., Brinker, D. J., & Flood, D. J. (1990). Photovoltaic power for a lunar base. Acta Astronautica, 22, 197–203. https://doi.org/10.1016/0094-5765(90)90021-C
+Liu, Y., Shen, T., Lv, X., Zhang, G., Wang, C., Gu, J., Zhang, X., Wang, Q., Chen, X., Quan, X., & Yao, W. (2023). Investigation on a lunar energy storage and conversion system based on the in-situ resource utilization. Energy, 268, 126681. https://doi.org/10.1016/j.energy.2023.126681
+Lulejian, N. M. (1961). Lunar expedition plan: LUNEX. Space Systems Division, Air Force Systems Command, Support Systems Plan Division. https://nsarchive2.gwu.edu/NSAEBB/NSAEBB479/docs/EBB-Moon04.pdf
+Luo, J., Hong, L., Nelson, B., & Wu, Y. (2015). Fully Sequential Procedures for Large-Scale Ranking-and-Selection Problems in Parallel Computing Environments. Operations Research, 63. https://doi.org/10.1287/opre.2015.1413
+Lyons, V., & Scott, J. (2007, June 25). An Overview of Space Power Systems for NASA Missions. 5th International Energy Conversion Engineering Conference and Exhibit (IECEC). 5th International Energy Conversion Engineering Conference and Exhibit (IECEC), St. Louis, Missouri. https://doi.org/10.2514/6.2007-4734
+Martins, J., Marques, R., Cruz, C., & Fonseca, Á. (2017). Flexibility in planning and development of a container terminal: An application of an American-style call option. Transportation Planning and Technology, 40, 1–13. https://doi.org/10.1080/03081060.2017.1340026
+Metzger, P. T. (2023). Economics of in-space industry and competitiveness of lunar-derived rocket propellant. Acta Astronautica, 207, 425–444. https://doi.org/10.1016/j.actaastro.2023.03.014
+Mohon, L. (2017, December 12). Kilopower—NASA. https://www.nasa.gov/directorates/stmd/tech-demo-missions-program/kilopower-hmqzw/
+Mueller, R. P. (2022, January 21). Lunar Base Construction Overview. ASCE Earth & Space Conference, Denver, CO. https://ntrs.nasa.gov/citations/20220000418
+NEI. (2021, November 4). Surviving the Lunar Night. Nuclear Energy Institute. https://www.nei.org/news/2021/surviving-the-lunar-night
+NREL. (2024). Best research-cell efficiency chart. National Renewable Energy Laboratory. https://www.nrel.gov/pv/cell-efficiency.html
+Oleson, S., Packard, T., Turnbull, E., Gibson, M., Rao, D., Barth, C., Wilson, S., Schmitz, P., Colozza, A., Klefman, B., Tian, L., & Mason, L. (2022). A Deployable 40 kWe Lunar Fission Surface Power Concept. Nuclear and Emerging Technologies for Space (NETS-2022), Cleveland, OH. https://ntrs.nasa.gov/citations/20220004670
+Percy, T. K. (2005). Simplifying Complex Problems with Systems Engineering Tools: A Lunar Architecture Analysis Case Study. http://hdl.handle.net/1853/8024
+Pinson, P. (2023). What May Future Electricity Markets Look Like? Journal of Modern Power Systems and Clean Energy, 11(3), 705–713. https://doi.org/10.35833/MPCE.2023.000073
+Powell, W. B. (2022). Reinforcement Learning and Stochastic Optimization, a unified framework for sequential decisions. Wiley.
+Simonsen, L. C., Debarro, M. J., & Farmer, J. T. (1992, September 1). Conceptual design of a lunar base thermal control system. https://ntrs.nasa.gov/citations/19930004815
+Skinner, D. C. (1999). Introduction to Decision Analysis. Gainesville, Fl: Probabilistic Publishing.
+Smitherman, D., Russell, T., Baysinger, M., Capizzo, P., Fabisinski, L., Griffin, B., Hornsby, L., Maples, Dauphne, & Miernik, J. (2012, May 22). Deep Space Habitat Configurations Based On International Space Station Systems. https://ntrs.nasa.gov/citations/20120014530
+Tiffin, D. J., & Friz, P. D. (2021, September 23). Parametric Cost Analysis of Refueling Options in Cislunar Space. AIAA ASCEND, Las Vegas, NV. https://ntrs.nasa.gov/citations/20210021943
+Tomiyama, T., Gu, P., Jin, Y., Lutters, D., Kind, Ch., & Kimura, F. (2009). Design methodologies: Industrial and educational applications. CIRP Annals, 58(2), 543–565. https://doi.org/10.1016/j.cirp.2009.09.003
+van der Linden, J., de Weerdt, M., & Demirović, E. (2022). Fair and Optimal Decision Trees: A Dynamic Programming Approach. Advances in Neural Information Processing Systems, 35, 38899–38911.
+Wachs, J. (2023). Heterogeneous Satellite Constellation Design for Cislunar Space Situational Awareness Using Real Options Analysis [Thesis, Massachusetts Institute of Technology]. https://dspace.mit.edu/handle/1721.1/150259
+Wekheiser, M. J., Moore, D. F., & Quinn, J. F. (2024). ISRU-Based Power on the Moon (ISRUPower-TP). NASA Space Technology Mission Directorate (STMD), Kennedy Space Center. https://techport.nasa.gov/view/146991
 
-[1] Mueller, R. P. (2022). Lunar Base Construction Overview v1 RPM. Presented at the ASCE Earth & Space Conference, April 25-28, Denver, CO. American Society of Civil Engineers. Kennedy Space Center. https://ntrs.nasa.gov/citations/20220000418
-
-[3] Janoiko, Barbara, et al. (2023) D-RATS 2022 Test Report. NASA JSC / JAXA Pressurized Rover Technical Interchange Meeting, 8 Dec. 2023, Houston, TX. National Aeronautics and Space Administration, https://ntrs.nasa.gov/citations/20230017073.
-
-[2] Wolfe, M. G. (1978). Future Orbital Power Systems Technol. Requirements. Paper presented at the NASA Lewis Research Center conference, September 1, 1978. National Aeronautics and Space Administration. https://ntrs.nasa.gov/citations/19790001954
-
-[4] Smitherman, David, et al. Deep Space Habitat Configurations Based On International Space Station Systems. NASA Marshall Space Flight Center, 2012. https://ntrs.nasa.gov/citations/20120014530.
-
-[5] https://ntrs.nasa.gov/citations/20220005893 Power and Energy for the Lunar Surface
-
-
-Nuclear power on the moon: https://www.iaea.org/sites/default/files/publications/magazines/bulletin/bull12-1/12104700912.pdf
-Solar cell array efficiency: https://apps.dtic.mil/sti/tr/pdf/ADA463695.pdf 
-
-Cell effieicny table: https://www.nrel.gov/pv/cell-efficiency.html cell-efficiency-data-table in excel
-
-Parametric study of a lunar base power systems https://www.mdpi.com/1996-1073/14/4/1141  
-
-[34] Haym Benaroya,
-Lunar habitats: A brief overview of issues and concepts,
-REACH,
-Volumes 7–8,
-2017,
-Pages 14-33,
-ISSN 2352-3093,
-https://doi.org/10.1016/j.reach.2018.08.002.
-(https://www.sciencedirect.com/science/article/pii/S2352309318300014)
-
-
-[6] Nuclear fission deployment cost: https://ntrs.nasa.gov/api/citations/20220004670/downloads/40%20kW%20Deployable%20FSP%20Paper_FINAL.pdf 
-
-[7] Landing Humans and Human-Class Cargo on the Moon and Mars
-
-[10] https://rps.nasa.gov/news/63/nasa-celebrates-45-years-of-voyager-1-enabled-by-radioisotope-power/ , https://www.hindawi.com/journals/stni/2022/9895907/#abstract 
-
-[20] https://learning.oreilly.com/library/view/reinforcement-learning-and/9781119815037/c02.xhtml#c02-hd01 
-[20.5] 		Skinner, D.C. (1999). Introduction to Decision Analysis. Gainesville, Fl: Probabilistic Publishing.
-[21] Luo, J., Hong, L.J., Nelson, B.L., and Wu, Y. (2015). Fully sequential procedures for large-scale ranking-and-selection problems in parallel computing environments. Operations Research 63(5): 1177–1194.
-
-
-[22] 		Boomsma, T.K., Meade, N., and Fleten, S.E. (2012). Renewable energy investments under different support schemes: A real options approach. European Journal of Operational Research 220(1): 225–237.
-[23] https://staff.washington.edu/paymana/papers/aero05_1.pdf

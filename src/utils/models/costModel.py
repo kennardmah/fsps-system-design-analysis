@@ -1,11 +1,21 @@
+"""
+costModel.py
+
+Calculate the cost at each time step and return the total cost.
+
+This file contains functions to:
+    1) main: Read implementation methods, capacity over time, and demand scenarios. Calculate and save the Levelized Cost of Energy (LCOE) for each implementation method.
+    2) discounted_value: Calculate the discounted value of a cost at a given time.
+    3) calculate_C_capital: Calculate the capital cost for a given capacity.
+    4) add_C_capital: Add the capital cost at a specific time to the cost over time.
+    5) calculate_C_operational: Calculate the operational cost per year based on the mass of nuclear fuel and components.
+    6) calculate_C_penalty: Calculate the penalty cost at a given time based on capacity and demand.
+    7) C_total: Calculate the total cost combining implementation, operational, and penalty costs, discounted over time.
+    8) E_total: Calculate the total energy generated over time, discounted.
+"""
+
 import capacityModel
 import csv
-# import argparse
-
-
-"""
-costModel.py – calculate the cost at each time step and return the total cost
-"""
 
 def main(alpha=876000, simulation=False, discount = 0.05):
     

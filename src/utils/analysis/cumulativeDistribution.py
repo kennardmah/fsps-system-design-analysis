@@ -1,3 +1,17 @@
+"""
+cumulativeDistribution.py
+
+Getting the E[LCOE] with different probability values using decision tree analysis (Section 5.1)
+
+This file contains functions to:
+    1) main_tree: Runs the decision tree model with specified probability values, generates cumulative distribution
+    function (CDF) plots,and calculates expected payoffs (Section 5.1)
+    2) main_sim: Runs the simulation model, processes demand and cost outcomes, and generates CDF plots (Appendix C).
+    3) get_var: Calculates the variance of the outcomes from the decision tree analysis (Section 5.1/6.1).
+    4) process_simulation_outcomes: Processes raw simulation data to generate expected LCOE outcomes for flexible and inflexible cases.
+"""
+
+
 import csv
 import matplotlib.pyplot as plt
 from matplotlib.lines import Line2D

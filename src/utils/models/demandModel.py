@@ -1,3 +1,18 @@
+"""
+demandModel.py
+
+This file estimates demand and returns N simulations based on a 'random walk' that the capacityModel will simulate with.
+
+This file contains functions to:
+    1) main: Generate demand simulations, save them to a CSV file, and optionally plot the demand simulations and final value distribution.
+    2) constant_demand: Generate a constant demand over time.
+    3) demand_calculator: Calculate the total demand based on the ELCSS headcount, power per person, and operations.
+    4) generate_demand_walk: Generate a single demand walk using a random walk with specified mean and standard deviation.
+    5) generate_demand_simulations: Generate multiple demand simulations using the random walk method.
+    6) plot_demand_simulations: Plot the generated demand simulations over time.
+    7) plot_final_value_distribution: Plot the distribution of final values of the demand simulations.
+"""
+
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -6,21 +21,9 @@ import sys
 sys.path.append('tools')
 from design import colors
 
-### this file will estimate demand and return N simulations based on 'random walk' that the capacityModel will simulate with
-
-'''
-VARIABLE
-- p_elcss : electrical power demand of the ELCSS
-    - elcss_headcount : number of people in the habitat (data structure: float)
-    - elcss_power_per_person : power demand per person (data structure: float)
-- p_operations : electrical power demand of the operations (data structure: list of tuples)
-'''
 
 def main(plot=True):
-    # std_dev of each steps should be std_dev/sqrt(num_steps) to keep the same std_dev for the final value
-    # update code to call these values instead of hardcoding them
     mean, std_dev, num_simulations = 34.2, np.sqrt(4.8/21), 1000
-
     # store the same demand simulations for each to have a fair comparison
     demand_simulations = generate_demand_simulations(mean, std_dev, num_simulations)
     demand_table = pd.DataFrame(demand_simulations)
@@ -29,11 +32,11 @@ def main(plot=True):
         plot_demand_simulations(demand_simulations)
         plot_final_value_distribution(demand_simulations)
 
-### PRELIMINARY ANALYSIS STUFF BELOW
+### PRELIMINARY ANALYSIS BELOW
 def constant_demand(t, demand):
     return demand * np.ones(t)
 
-### USEFUL STUFF BELOW
+### USEFUL FUNCTIONS BELOW
 def demand_calculator(elcss_headcount, elcss_power_per_person, operations):
     p_elcss = elcss_headcount * elcss_power_per_person
     p_operations = sum([operation[1] for operation in operations])

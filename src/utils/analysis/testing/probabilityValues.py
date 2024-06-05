@@ -4,10 +4,13 @@ probabilityValues.py
 Sensitivity Analysis of Different Prior Probabilities (Section 5.2)
 
 This file contains functions to:
-    1) Calculate the posterior probability of the chance outcomes based on
-    Bayes' Theorem and EVSI-Transition Matrix
-    2) Run the analysis with different prior probability values
-    3) Graph the 2D & 3D diagram to visualise trends
+    1) calculate_prob_2: Calculate the posterior probability of the chance outcomes based on Bayes' Theorem and the EVSI-Transition Matrix.
+    2) main: Run the analysis with different prior probability values and generate results for varying prior probabilities.
+    3) main_test: Run the test analysis with different prior probability values and label results accordingly.
+    4) generate_prob_1: Generate a set of prior probabilities for the analysis.
+    5) label_results: Label the results based on the description and color code.
+    6) plot_results: Graph the 2D diagram to visualize trends in the results.
+    7) plot_results_3d: Graph the 3D diagram to visualize trends in the results.
 """
 
 import matplotlib.pyplot as plt
