@@ -25,23 +25,13 @@ FSPS-System-Design-Analysis/
 ├── src/
 │   ├── utils/
 │   │   ├── analysis/
-│   │   │   ├── cumulativeDistribution.py
-│   │   │   ├── expectedPayoff.py
-│   │   │   └── tornadoDiagram.py
+│   │   │   ├── tests/
 │   │   ├── data/
 │   │   │   ├── processed/
-│   │   │   │   └── decision_tree_optimal_path.csv
 │   │   │   ├── raw/
-│   │   │   │   ├── capacity_over_time.csv
-│   │   │   │   ├── decision_tree_outcome.csv
-│   │   │   │   └── implementation_methods.csv
 │   │   ├── models/
-│   │   │   ├── capacityModel.py
-│   │   │   ├── costModel.py
-│   │   │   └── demandModel.py
-│   ├── main.py
+│   ├── treeage/
 ├── tools/
-│   └── design.py
 ├── README.md
 ```
 
@@ -101,12 +91,7 @@ The case application integrates power system sizing, cost modeling, and energy d
 
 ## Results and Discussion 📊
 The results show that embedding flexibility in the FSPS design can reduce the LCOE by approximately 5.49% and significantly decrease the variance in LCOE compared to inflexible strategies. Detailed results and sensitivity analyses are provided in the `Results and Discussion` section of the thesis.
-
-## Conclusion 🏁
 The research demonstrates that incorporating flexibility into the design of FSPS can offer significant financial and operational benefits, making it a viable solution for managing the uncertainties of lunar energy demands.
-
-## Future Work 🔭
-Future research can explore integrating potential revenue streams, refining penalty cost models, and enhancing the complexity of uncertainty modeling. Empirical testing and validation in simulated lunar environments can further validate the model's applicability.
 
 ## Acknowledgements 🙏
 I would like to extend my heartfelt gratitude to everyone who made this project possible. Special thanks to Prof. Michel-Alexandre Cardin for his guidance and for granting me the autonomy to shape my work. Thank you to Kosuke Ikeya for the continuous support and assistance in making my work legible. I am grateful to my colleagues for the countless days spent together in the lounge, enjoying the “PhD students only” coffee. Lastly, I extend my appreciation to the space enthusiasts who provided their invaluable input through interviews and coffee chats. 
