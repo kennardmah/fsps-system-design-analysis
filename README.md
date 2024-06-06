@@ -59,22 +59,8 @@ To run the analysis and generate results, use the following commands:
 
 1. Run the main analysis script:
     ```bash
-    python src/main.py
+    python ###THIS MUST BE UPDATED###
     ```
-
-2. Generate specific analyses:
-    - For cost modeling:
-        ```bash
-        python src/utils/models/costModel.py
-        ```
-    - For capacity modeling:
-        ```bash
-        python src/utils/models/capacityModel.py
-        ```
-    - For demand modeling:
-        ```bash
-        python src/utils/models/demandModel.py
-        ```
 
 ## Methodology 📈
 The methodology follows a structured, four-phase framework to design a flexible lunar energy system under demand uncertainty:
