@@ -2,27 +2,27 @@
 
 This repository contains the code and data for the Master's thesis project titled "Powering the Moon: Engineering System Design and Analysis for Flexible Nuclear Fission Surface Power under Demand Uncertainty" by Kennard S. Mah, Imperial College London.
 
-![intro](./assets/figures/master_titlepage.png)
+<img src="./assets/figures/master_titlepage.png" alt="intro" width="50%">
 
 ## Table of Contents 📋
-- [Introduction](#introduction🌍)
-- [Repository Structure](#repository-structure🗂️)
-- [Installation](#installation💻)
-- [Usage](#usage⚙️)
-- [Methodology](#methodology)
-- [Case Application](#case-application🛰️)
-- [Results and Discussion](#results-and-discussion📊)
-- [Acknowledgements](#acknowledgements)
+- [Introduction](#introduction-🌍)
+- [Repository Structure](#repository-structure-🗂️)
+- [Installation](#installation-💻)
+- [Usage](#usage-⚙️)
+- [Methodology](#methodology-📈)
+- [Case Application](#case-application-🛰️)
+- [Results and Discussion](#results-and-discussion-📊)
+- [Acknowledgements](#acknowledgements-🙏)
 
 ## Introduction 🌍
 The project aims to develop a sustainable energy solution for a lunar outpost using a Nuclear Fission-based Surface Power System (FSPS). The proposed model incorporates embedded flexibility to adapt to changing conditions and demand uncertainties, minimizing the Levelized Cost of Electricity (LCOE).
 
-![intro](./assets/figures/figure1.webp)
+<img src="./assets/figures/figure1.webp" alt="intro" width="50%">
 
 ## Repository Structure 🗂️
 The repository is structured as follows:
 
-![repo structure](./assets/figures/figure16.png)
+<img src="./assets/figures/figure16.png" alt="repo structure" width="50%">
 
 ## Installation 💻
 To install and run the project, follow these steps:
@@ -60,7 +60,7 @@ The methodology follows a structured, four-phase framework to design a flexible 
 3. **Optimisation Function**
 4. **Analysis and Testing**
 
-![methodology](./assets/figures/figure2.png)
+<img src="./assets/figures/figure2.png" alt="methodology" width="50%">
 
 ## Case Application 🛰️
 The case application integrates power system sizing, cost modeling, and energy demand requirements to evaluate different strategies. The scenarios analyzed include both flexible and inflexible deployment strategies.
