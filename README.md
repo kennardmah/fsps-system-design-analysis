@@ -6,7 +6,7 @@
       This repository contains the code and data for the Master's thesis project titled "Powering the Moon: Engineering System Design and Analysis for Flexible Nuclear Fission Surface Power under Demand Uncertainty" by Kennard S. Mah, Imperial College London.
     </td>
     <td>
-      <img src="./assets/figures/master_titlepage.png" alt="intro" width="200">
+      <img src="./assets/figures/master_titlepage.png" alt="intro" width="400">
     </td>
   </tr>
 </table>
