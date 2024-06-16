@@ -23,7 +23,7 @@
 ## Repository Structure 🗂️
 The repository is structured as follows:
 
-<img src="./assets/figures/figure16.png" alt="repo structure" width="50%">
+<img src="./assets/figures/figure16.png" alt="repo structure" width="80%">
 
 ## Installation 💻
 To install and run the project, follow these steps:
@@ -61,7 +61,7 @@ The methodology follows a structured, four-phase framework to design a flexible 
 3. **Optimisation Function**
 4. **Analysis and Testing**
 
-<img src="./assets/figures/figure2.png" alt="methodology" width="50%">
+<img src="./assets/figures/figure2.png" alt="methodology" width="80%">
 
 ## Case Application 🛰️
 The case application integrates power system sizing, cost modeling, and energy demand requirements to evaluate different strategies. The scenarios analyzed include both flexible and inflexible deployment strategies.
