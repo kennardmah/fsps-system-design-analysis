@@ -1,12 +1,13 @@
 # FSPS System Design and Analysis 🚀
 
-This repository contains the code and data for the Master's thesis project titled "Powering the Moon: Engineering System Design and Analysis for Flexible Nuclear Fission Surface Power under Demand Uncertainty" by Kennard S. Mah, Imperial College London.
-
-
-<div align="right">
-  <img src="./assets/figures/master_titlepage.png" alt="intro" width="50%">
+<div style="display: flex; align-items: center;">
+  <div style="flex: 1;">
+    This repository contains the code and data for the Master's thesis project titled "Powering the Moon: Engineering System Design and Analysis for Flexible Nuclear Fission Surface Power under Demand Uncertainty" by Kennard S. Mah, Imperial College London.
+  </div>
+  <div style="flex: 1; text-align: right;">
+    <img src="./assets/figures/master_titlepage.png" alt="intro" width="50%">
+  </div>
 </div>
-
 
 ## Table of Contents 📋
 - [Introduction 🌍](#introduction-)
@@ -19,9 +20,15 @@ This repository contains the code and data for the Master's thesis project title
 - [Acknowledgements 🙏](#acknowledgements-)
 
 ## Introduction 🌍
-The project aims to develop a sustainable energy solution for a lunar outpost using a Nuclear Fission-based Surface Power System (FSPS). The proposed model incorporates embedded flexibility to adapt to changing conditions and demand uncertainties, minimizing the Levelized Cost of Electricity (LCOE).
 
-<img src="./assets/figures/figure1.webp" alt="intro" width="50%">
+<div style="display: flex; align-items: center;">
+  <div style="flex: 1;">
+    The project aims to develop a sustainable energy solution for a lunar outpost using a Nuclear Fission-based Surface Power System (FSPS). The proposed model incorporates embedded flexibility to adapt to changing conditions and demand uncertainties, minimizing the Levelized Cost of Electricity (LCOE).
+  </div>
+  <div style="flex: 1; text-align: right;">
+    <img src="./assets/figures/figure1.webp" alt="intro" width="50%">
+  </div>
+</div>
 
 ## Repository Structure 🗂️
 The repository is structured as follows:
