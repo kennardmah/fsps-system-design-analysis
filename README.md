@@ -2,37 +2,27 @@
 
 This repository contains the code and data for the Master's thesis project titled "Powering the Moon: Engineering System Design and Analysis for Flexible Nuclear Fission Surface Power under Demand Uncertainty" by Kennard S. Mah, Imperial College London.
 
+![intro](./assets/figures/master_titlepage.png)
+
 ## Table of Contents 📋
-- [Introduction](#introduction)
-- [Repository Structure](#repository-structure)
-- [Installation](#installation)
-- [Usage](#usage)
+- [Introduction](#introduction🌍)
+- [Repository Structure](#repository-structure🗂️)
+- [Installation](#installation💻)
+- [Usage](#usage⚙️)
 - [Methodology](#methodology)
-- [Case Application](#case-application)
-- [Results and Discussion](#results-and-discussion)
+- [Case Application](#case-application🛰️)
+- [Results and Discussion](#results-and-discussion📊)
 - [Acknowledgements](#acknowledgements)
 
 ## Introduction 🌍
 The project aims to develop a sustainable energy solution for a lunar outpost using a Nuclear Fission-based Surface Power System (FSPS). The proposed model incorporates embedded flexibility to adapt to changing conditions and demand uncertainties, minimizing the Levelized Cost of Electricity (LCOE).
 
+![intro](./assets/figures/figure1.webp)
+
 ## Repository Structure 🗂️
 The repository is structured as follows:
 
-```
-FSPS-System-Design-Analysis/
-├── src/
-│   ├── utils/
-│   │   ├── analysis/
-│   │   │   ├── tests/
-│   │   ├── data/
-│   │   │   ├── processed/
-│   │   │   ├── raw/
-│   │   ├── models/
-│   ├── treeage/
-├── tools/
-├── README.md
-```
-
+![repo structure](./assets/figures/figure16.png)
 
 ## Installation 💻
 To install and run the project, follow these steps:
@@ -59,7 +49,7 @@ To run the analysis and generate results, use the following commands:
 
 1. Run the main analysis script:
     ```bash
-    python ###THIS MUST BE UPDATED###
+    python ###To Be Updated###
     ```
 
 ## Methodology 📈
@@ -67,8 +57,10 @@ The methodology follows a structured, four-phase framework to design a flexible 
 
 1. **Baseline Design Concept and Uncertainty Recognition**
 2. **Embedded Flexibility**
-3. **Optimization Function**
+3. **Optimisation Function**
 4. **Analysis and Testing**
+
+![methodology](./assets/figures/figure2.png)
 
 ## Case Application 🛰️
 The case application integrates power system sizing, cost modeling, and energy demand requirements to evaluate different strategies. The scenarios analyzed include both flexible and inflexible deployment strategies.
