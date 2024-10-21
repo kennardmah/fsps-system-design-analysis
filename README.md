@@ -1,6 +1,6 @@
 # FSPS System Design and Analysis 🚀
 
-  This repository contains the code and data for the Master's thesis project titled "Powering the Moon: Engineering System Design and Analysis for Flexible Nuclear Fission Surface Power under Demand Uncertainty" by Kennard S. Mah, Imperial College London.
+  This repository contains the code and data for the Master's thesis project titled "Powering the Moon: Engineering System Design and Analysis for Flexible Nuclear Fission Surface Power under Demand Uncertainty"
 
 <img src="./assets/figures/master_titlepage.png" alt="intro" width="25%">
 
